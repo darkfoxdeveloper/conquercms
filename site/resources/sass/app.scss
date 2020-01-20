@@ -7,6 +7,12 @@
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
 
+// Font Awesome 5 Free
+@import '~@fortawesome/fontawesome-free/scss/fontawesome.scss';
+@import '~@fortawesome/fontawesome-free/scss/regular.scss';
+@import '~@fortawesome/fontawesome-free/scss/solid.scss';
+@import '~@fortawesome/fontawesome-free/scss/brands.scss';
+
 // Custom css
 .menu-header {
     background-color: $color-main;
@@ -65,4 +71,74 @@
     max-width: 730px;
     text-align: center;
     margin: auto;
+}
+
+.icon-border {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.round-icon {
+    display: block;
+    width: 60px;
+    height: 60px;
+    line-height: 60px;
+    border: 3px solid #2575dc;
+    color: #2575dc;
+    border-radius: 50%;
+    text-align: center;
+    font-size: 22px;
+}
+
+.card {
+    .card-icon {
+        margin-right: 5px;
+    }
+
+    .card-title {
+        font-size: 1rem;
+        font-weight: 500;
+        line-height: 1.4;
+    }
+
+    .card-text {
+        font-size: .93rem;
+    }
+}
+
+footer:last-of-type {
+    background-color: #325e76f2;
+
+    .footer-title {
+        margin-bottom: 20px;
+        font-size: .875rem;
+        font-weight: 500;
+        color: #fff;
+        text-transform: uppercase;
+    }
+
+    label,
+    p,
+    a {
+        color: rgba(255, 255, 255, 0.45);
+
+        &.link:hover {
+            color: #fff
+        }
+    }
+
+    .footer-tags a {
+        display: inline-block;
+        padding: 5px 10px;
+        margin: 0 2px 8px 0;
+        font-size: .9375rem;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 3px;
+    }
+
+    .footer-mh {
+        min-height: 330px;
+    }
 }

@@ -1,11 +1,13 @@
 <html>
     <head>
         <title>@yield('title') - ConquerCMS</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     </head>
     <body>
         @section('menu')
-        <div class="container-fluid  menu-header">
+        <header class="container-fluid  menu-header">
             <div class="row">
                 <div class="col-12">
                     <div class="container">
@@ -57,19 +59,42 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </header>
         @show
 
         @section('sidebar')
         @show
 
-        <div class="container">
+        <div class="container py-5 py-md-6">
             <div class="row">
                 <div class="col-12">
                     @yield('content')
                 </div>
             </div>
         </div>
+
+        <footer class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <div class="container">
+                        <div class="row justify-content-between align-items-center footer-mh">
+                            <div class="col-md-4 mb-4 mb-md-0 pb-1 pb-md-0">
+                                <div class="footer-title">About OldConquer</div>
+                                <p>OldConquer is an un-official private server of the conquer online game and is not related to the official game in any method.</p>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="footer-title">Our Partners</div>
+                                <div class="footer-tags">
+                                    <a href="http://elitepvpers.com" class="link">Elitepvpers</a>
+                                    <a href="http://www.xtremetop100.com/in.php?site=123456789" class="link">Xtremetop100</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
         <script src="{{ asset('js/app.js') }}"></script>
     </body>
 </html>
