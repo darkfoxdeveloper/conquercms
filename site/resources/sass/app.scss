@@ -1,1 +1,68 @@
-//
+// Fonts
+@import url('https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900');
+
+// Variables
+@import 'variables';
+
+// Bootstrap
+@import '~bootstrap/scss/bootstrap';
+
+// Custom css
+.menu-header {
+    background-color: $color-main;
+
+    .navbar {
+        .nav-link {
+            font-weight: 500;
+            color: $color-links;
+
+            &:hover {
+                color: #fff;
+            }
+        }
+        
+        .navbar-brand {
+            color: orange;
+            font-size: 22px;
+            font-weight: bold;
+        }
+    }
+
+    .text-online {
+        color: lime;
+    }
+
+    .text-offline {
+        color: red;
+    }
+
+    .online-players {
+        color: gold;
+    }
+
+    .text-accounts {
+        color: lime;
+    }
+
+    .text-orange {
+        color: orange !important;
+    }
+}
+
+.section-title {
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: #505050;
+    text-align: center;
+}
+
+.section-description {
+    font-size: 18px;
+    font-weight: 400;
+    margin-top: 0;
+    margin-bottom: 1rem;
+    color: #59595f;
+    max-width: 730px;
+    text-align: center;
+    margin: auto;
+}
