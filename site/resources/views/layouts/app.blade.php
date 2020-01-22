@@ -19,38 +19,24 @@
                                         <span class="navbar-toggler-icon"></span>
                                     </button>
                                     <div class="collapse navbar-collapse" id="navbarCCMS">
-                                        <ul class="navbar-nav">
-                                            <li class="nav-item active">
-                                                <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a class="nav-link" href="#">Register</a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a class="nav-link" href="#">Downloads</a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a class="nav-link" href="#">Store</a>
-                                            </li>
-                                        </ul>
+                                        {{ menu('main', 'menu_template') }}
                                     </div>
                                     <div class="ml-auto">
-                                    <ul class="navbar-nav">
-                                            <li class="nav-item active">
-                                                <a class="nav-link" href="#">Server: <span class="text-{{ $config->server_online ? "online" : "offline" }}">{{ $config->server_online ? "ONLINE" : "OFFLINE" }}</span></a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a class="nav-link" href="#">Online Players: <span class="online-players">999</span></a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a class="nav-link" href="#">Accounts: <span class="text-accounts">4900</span></a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a class="nav-link" href="#">Login</a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a class="nav-link text-orange" href="#">Forgot Pass?</a>
-                                            </li>
+                                        @php
+                                            $secundary_menu_items = menu('secundary', '_json');
+                                        @endphp
+                                        <ul class="navbar-nav">
+                                            @foreach($secundary_menu_items as $menu_item)
+                                                @if ($menu_item->url === "#SERVER_STATUS")
+                                                    <a class="nav-link" href="#">Server: <span class="text-{{ $config->server_online ? "online" : "offline" }}">{{ $config->server_online ? "ONLINE" : "OFFLINE" }}</span></a>
+                                                @elseif ($menu_item->url === "#ONLINE_PLAYERS")
+                                                    <a class="nav-link" href="#">Online Players: <span class="online-players">999</span></a>
+                                                @elseif ($menu_item->url === "#ACCOUNTS")
+                                                    <a class="nav-link" href="#">Accounts: <span class="text-accounts">4900</span></a>
+                                                @else
+                                                    <li class="nav-item"><a href="{{ $menu_item->url }}" class="nav-link">{{ $menu_item->title }}</a></li>
+                                                @endif
+                                            @endforeach
                                         </ul>
                                     </div>
                                 </nav>
