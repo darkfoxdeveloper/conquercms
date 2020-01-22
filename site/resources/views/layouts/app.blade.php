@@ -37,7 +37,7 @@
                                     <div class="ml-auto">
                                     <ul class="navbar-nav">
                                             <li class="nav-item active">
-                                                <a class="nav-link" href="#">Server: <span class="text-online">ONLINE</span></a>
+                                                <a class="nav-link" href="#">Server: <span class="text-{{ $config->server_online ? "online" : "offline" }}">{{ $config->server_online ? "ONLINE" : "OFFLINE" }}</span></a>
                                             </li>
                                             <li class="nav-item">
                                                 <a class="nav-link" href="#">Online Players: <span class="online-players">999</span></a>
@@ -79,14 +79,15 @@
                     <div class="container">
                         <div class="row justify-content-between align-items-center footer-mh">
                             <div class="col-md-4 mb-4 mb-md-0 pb-1 pb-md-0">
-                                <div class="footer-title">About OldConquer</div>
-                                <p>OldConquer is an un-official private server of the conquer online game and is not related to the official game in any method.</p>
+                                <div class="footer-title">{{ $config->about_title }}</div>
+                                <p>{{ $config->about_text }}</p>
                             </div>
                             <div class="col-md-4">
-                                <div class="footer-title">Our Partners</div>
+                                <div class="footer-title">{{ $config->links_title }}</div>
                                 <div class="footer-tags">
-                                    <a href="http://elitepvpers.com" class="link">Elitepvpers</a>
-                                    <a href="http://www.xtremetop100.com/in.php?site=123456789" class="link">Xtremetop100</a>
+                                    @foreach($config->links as $link)
+                                        <a href="{{ $link->link }}" class="link" target="_blank">{{ $link->name }}</a>
+                                    @endforeach
                                 </div>
                             </div>
                         </div>
