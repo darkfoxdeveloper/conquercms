@@ -15,7 +15,7 @@
        <div class="col-12">
             <span class="icon-border"><i class="fas fa-bolt round-icon"></i></span>
             <h1 class="section-title">What is ConquerCMS?</h1>
-            <h2 class="section-description">Its a CMS for a Conquer Online Server Websites. You can customize your theme and enjoy all features already coded in Core Theme.</p>
+            <h2 class="section-description">Its a CMS for a Conquer Online Server Websites. You can customize your theme and enjoy all features already coded in Core Theme.</h2>
        </div>
     </div>
 
