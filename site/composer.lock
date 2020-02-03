@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "b0ee92f58fbb3e39efa3f73d4fabe43a",
+    "content-hash": "589813cd4ae914a48d3457f09b5a7acd",
     "packages": [
         {
             "name": "arrilot/laravel-widgets",
@@ -2451,6 +2451,60 @@
                 "shell"
             ],
             "time": "2019-12-06T14:19:43+00:00"
+        },
+        {
+            "name": "pvtl/voyager-pages",
+            "version": "0.2.11",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/pvtl/voyager-pages.git",
+                "reference": "23bb57a7aea6a7679f32510252f72021f14886db"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/pvtl/voyager-pages/zipball/23bb57a7aea6a7679f32510252f72021f14886db",
+                "reference": "23bb57a7aea6a7679f32510252f72021f14886db",
+                "shasum": ""
+            },
+            "require": {
+                "tcg/voyager": "^1.1.8"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^5.7"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Pvtl\\VoyagerPages\\Providers\\PagesServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "classmap": [],
+                "psr-4": {
+                    "Pvtl\\VoyagerPages\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Pivotal Agency",
+                    "email": "tech@pivotalagency.com.au",
+                    "homepage": "http://pivotalagency.com.au"
+                }
+            ],
+            "description": "Ahoy! - A package to implement pages into Voyager",
+            "keywords": [
+                "frontend",
+                "laravel",
+                "pages",
+                "voyager"
+            ],
+            "time": "2020-01-14T01:00:32+00:00"
         },
         {
             "name": "ralouphie/getallheaders",
