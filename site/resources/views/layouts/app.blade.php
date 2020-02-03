@@ -1,6 +1,6 @@
 <html>
     <head>
-        <title>@yield('title') - ConquerCMS</title>
+        <title>@yield('title') - {{ config('app.name') }}</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <link href="{{ asset('css/app.css') }}" rel="stylesheet">
@@ -14,7 +14,7 @@
                         <div class="row">
                             <div class="col-12">
                                 <nav class="navbar navbar-expand-lg navbar-dark">
-                                    <a class="navbar-brand" href="#">ConquerCMS</a>
+                                    <a class="navbar-brand" href="#">{{ config('app.name') }}</a>
                                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCCMS" aria-controls="navbarCCMS" aria-expanded="false" aria-label="Toggle navigation">
                                         <span class="navbar-toggler-icon"></span>
                                     </button>

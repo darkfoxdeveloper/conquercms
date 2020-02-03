@@ -41,6 +41,11 @@ return [
             'provider' => 'users',
         ],
 
+        'conquer' => [
+            'driver' => 'session',
+            'provider' => 'conquer_users',
+        ],
+
         'api' => [
             'driver' => 'token',
             'provider' => 'users',
@@ -70,6 +75,10 @@ return [
             'driver' => 'eloquent',
             'model' => App\User::class,
         ],
+        'conquer_users' => [
+            'driver' => 'eloquent',
+            'model' => App\ConquerUser::class,
+        ],
 
         // 'users' => [
         //     'driver' => 'database',
@@ -95,6 +104,12 @@ return [
     'passwords' => [
         'users' => [
             'provider' => 'users',
+            'table' => 'password_resets',
+            'expire' => 60,
+            'throttle' => 60,
+        ],
+        'conquer_users' => [
+            'provider' => 'conquer_users',
             'table' => 'password_resets',
             'expire' => 60,
             'throttle' => 60,

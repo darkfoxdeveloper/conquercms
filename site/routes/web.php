@@ -11,6 +11,10 @@
 |
 */
 Route::get('/', 'Controller@Home');
+Route::get('/home', 'Controller@Home');
+
+Route::get('login', 'ConquerAuthController@index');
+Route::post('login', 'ConquerAuthController@postLogin');
 
 Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();
