@@ -11,14 +11,7 @@ class Configuration extends Model {
      * @var array
      */
     protected $fillable = [
-        'server_name'
+        'key',
+        'value'
     ];
-
-     /**
-     * Get the links records for the configuration.
-     */
-    public function links()
-    {
-        return $this->hasMany('App\Link');
-    }
 }

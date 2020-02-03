@@ -28,7 +28,7 @@
                                         <ul class="navbar-nav">
                                             @foreach($secundary_menu_items as $menu_item)
                                                 @if ($menu_item->url === "#SERVER_STATUS")
-                                                    <a class="nav-link" href="#">Server: <span class="text-{{ $config->server_online ? "online" : "offline" }}">{{ $config->server_online ? "ONLINE" : "OFFLINE" }}</span></a>
+                                                    <a class="nav-link" href="#">Server: <span class="text-{{ $server_status ? "online" : "offline" }}">{{ $server_status ? "ONLINE" : "OFFLINE" }}</span></a>
                                                 @elseif ($menu_item->url === "#ONLINE_PLAYERS")
                                                     <a class="nav-link" href="#">Online Players: <span class="online-players">999</span></a>
                                                 @elseif ($menu_item->url === "#ACCOUNTS")
@@ -65,13 +65,13 @@
                     <div class="container">
                         <div class="row justify-content-between align-items-center footer-mh">
                             <div class="col-md-4 mb-4 mb-md-0 pb-1 pb-md-0">
-                                <div class="footer-title">{{ $config->about_title }}</div>
-                                <p>{{ $config->about_text }}</p>
+                                <div class="footer-title">{{ $settings_controller->GetSetting('about_title') }}</div>
+                                <p>{{ $settings_controller->GetSetting('about_text') }}</p>
                             </div>
                             <div class="col-md-4">
-                                <div class="footer-title">{{ $config->links_title }}</div>
+                                <div class="footer-title">{{ $settings_controller->GetSetting('links_title') }}</div>
                                 <div class="footer-tags">
-                                    @foreach($config->links as $link)
+                                    @foreach($settings_controller->getFooterLinks() as $link)
                                         <a href="{{ $link->link }}" class="link" target="_blank">{{ $link->name }}</a>
                                     @endforeach
                                 </div>

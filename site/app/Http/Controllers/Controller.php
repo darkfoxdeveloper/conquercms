@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Configuration;
+use App\Link;
 use Exception;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Bus\DispatchesJobs;
@@ -15,15 +16,29 @@ class Controller extends BaseController
 
     public function Home()
     {
-        $config = Configuration::first();
-        if ($config === null) {
-            die("Error. Not exist configuration for use.");
-        }
+        $configs = Configuration::all();
+        $status = false;
         try {
-            $config->server_online = fsockopen($config->host, $config->game_port, $errno, $errstr, 30);
+            $status = fsockopen($configs->where('key', '=', 'host')->first(), $configs->where('key', '=', 'game_port')->first(), $errno, $errstr, 30);
         } catch (Exception $e) {
-            $config->server_online = false;
         }
-        return view('base-for-themes', array("config" => $config));
+        return view('base-for-themes', array("settings_controller" => $this, "server_status" => $status));
+    }
+
+    public function GetSetting($key, $default_value = null) {
+        $value = $default_value;
+        if (strlen($default_value) <= 0) {
+            $value = $key;
+        }
+        $config = Configuration::where('key', '=', $key)->first();
+        if ($config) {
+            $value = $config->value;
+        }
+        return $value;
+    }
+
+    public function GetFooterLinks() {
+        $links = Link::all();
+        return $links;
     }
 }
