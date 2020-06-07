@@ -30,9 +30,9 @@
                                                 @if ($menu_item->url === "#SERVER_STATUS")
                                                     <a class="nav-link" href="#">Server: <span class="text-{{ $server_status ? "online" : "offline" }}">{{ $server_status ? "ONLINE" : "OFFLINE" }}</span></a>
                                                 @elseif ($menu_item->url === "#ONLINE_PLAYERS")
-                                                    <a class="nav-link" href="#">Online Players: <span class="online-players">999</span></a>
+                                                    <a class="nav-link" href="#">Online Players: <span class="online-players">{{ $online_players }}</span></a>
                                                 @elseif ($menu_item->url === "#ACCOUNTS")
-                                                    <a class="nav-link" href="#">Accounts: <span class="text-accounts">4900</span></a>
+                                                    <a class="nav-link" href="#">Accounts: <span class="text-accounts">{{ $total_accounts }}</span></a>
                                                 @else
                                                     <li class="nav-item"><a href="{{ $menu_item->url }}" class="nav-link">{{ $menu_item->title }}</a></li>
                                                 @endif

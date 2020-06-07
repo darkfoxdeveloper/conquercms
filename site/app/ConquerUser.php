@@ -8,8 +8,9 @@ class ConquerUser extends \TCG\Voyager\Models\User
 {
     use Notifiable;
 
-    protected $table = "account";
+    protected $table = "accounts";
     protected $connection = 'conquer_mysql';
+    public $timestamps = false;
 
     /**
      * The attributes that are mass assignable.
@@ -17,7 +18,7 @@ class ConquerUser extends \TCG\Voyager\Models\User
      * @var array
      */
     protected $fillable = [
-        'name', 'password',
+        'username', 'password', 'email', 'question', 'answer', 'mobilenumber', 'secretquestion'
     ];
 
     /**

@@ -12,6 +12,10 @@
 */
 Route::get('/', 'Controller@Home');
 Route::get('/home', 'Controller@Home');
+Route::get('/register', 'Controller@Register');
+Route::post('/register', 'Controller@PostRegister');
+Route::get('/downloads', 'Controller@Downloads');
+Route::get('/shop', 'Controller@Shop');
 
 Route::get('login', 'ConquerAuthController@index');
 Route::post('login', 'ConquerAuthController@postLogin');
