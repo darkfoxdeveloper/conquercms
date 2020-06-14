@@ -1,15 +1,15 @@
 CREATE DATABASE  IF NOT EXISTS `conquercms` /*!40100 DEFAULT CHARACTER SET latin1 */;
 USE `conquercms`;
--- MySQL dump 10.13  Distrib 5.7.26, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.19, for Win64 (x86_64)
 --
 -- Host: localhost    Database: conquercms
 -- ------------------------------------------------------
--- Server version	5.7.26
+-- Server version	5.7.24
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
+/*!50503 SET NAMES utf8 */;
 /*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
 /*!40103 SET TIME_ZONE='+00:00' */;
 /*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
@@ -23,7 +23,7 @@ USE `conquercms`;
 
 DROP TABLE IF EXISTS `configurations`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `configurations` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `key` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -31,7 +31,7 @@ CREATE TABLE `configurations` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -40,7 +40,6 @@ CREATE TABLE `configurations` (
 
 LOCK TABLES `configurations` WRITE;
 /*!40000 ALTER TABLE `configurations` DISABLE KEYS */;
-INSERT INTO `configurations` VALUES (1,'server_name','ConquerCMS','2020-02-03 07:07:00','2020-02-03 07:07:00'),(2,'host','co.darkfoxdeveloper.com','2020-02-03 07:09:34','2020-02-03 07:09:34'),(3,'about_title','About ConquerCMS','2020-02-03 07:30:55','2020-02-03 07:30:55'),(4,'about_text','This is a powerfullcms for conquer online websites','2020-02-03 07:31:06','2020-02-03 07:31:06'),(5,'game_port','5816','2020-02-03 07:31:34','2020-02-03 07:31:34'),(6,'links_title','Partners','2020-02-03 07:31:00','2020-02-03 07:32:17'),(7,'home_title','What is ConquerCMS?','2020-02-03 08:23:45','2020-02-03 08:23:45'),(8,'home_subtitle','Its a CMS for a Conquer Online Server Websites. You can customize your theme and enjoy all features already coded in Core Theme.','2020-02-03 08:23:59','2020-02-03 08:23:59');
 /*!40000 ALTER TABLE `configurations` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -50,7 +49,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `data_rows`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `data_rows` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `data_type_id` int(10) unsigned NOT NULL,
@@ -77,7 +76,7 @@ CREATE TABLE `data_rows` (
 
 LOCK TABLES `data_rows` WRITE;
 /*!40000 ALTER TABLE `data_rows` DISABLE KEYS */;
-INSERT INTO `data_rows` VALUES (1,1,'id','number','ID',1,0,0,0,0,0,NULL,1),(2,1,'name','text','Name',1,1,1,1,1,1,NULL,2),(3,1,'email','text','Email',1,1,1,1,1,1,NULL,3),(4,1,'password','password','Password',1,0,0,1,1,0,NULL,4),(5,1,'remember_token','text','Remember Token',0,0,0,0,0,0,NULL,5),(6,1,'created_at','timestamp','Created At',0,1,1,0,0,0,NULL,6),(7,1,'updated_at','timestamp','Updated At',0,0,0,0,0,0,NULL,7),(8,1,'avatar','image','Avatar',0,1,1,1,1,1,NULL,8),(9,1,'user_belongsto_role_relationship','relationship','Role',0,1,1,1,1,0,'{\"model\":\"TCG\\\\Voyager\\\\Models\\\\Role\",\"table\":\"roles\",\"type\":\"belongsTo\",\"column\":\"role_id\",\"key\":\"id\",\"label\":\"display_name\",\"pivot_table\":\"roles\",\"pivot\":0}',10),(10,1,'user_belongstomany_role_relationship','relationship','Roles',0,1,1,1,1,0,'{\"model\":\"TCG\\\\Voyager\\\\Models\\\\Role\",\"table\":\"roles\",\"type\":\"belongsToMany\",\"column\":\"id\",\"key\":\"id\",\"label\":\"display_name\",\"pivot_table\":\"user_roles\",\"pivot\":\"1\",\"taggable\":\"0\"}',11),(11,1,'settings','hidden','Settings',0,0,0,0,0,0,NULL,12),(12,2,'id','number','ID',1,0,0,0,0,0,NULL,1),(13,2,'name','text','Name',1,1,1,1,1,1,NULL,2),(14,2,'created_at','timestamp','Created At',0,0,0,0,0,0,NULL,3),(15,2,'updated_at','timestamp','Updated At',0,0,0,0,0,0,NULL,4),(16,3,'id','number','ID',1,0,0,0,0,0,NULL,1),(17,3,'name','text','Name',1,1,1,1,1,1,NULL,2),(18,3,'created_at','timestamp','Created At',0,0,0,0,0,0,NULL,3),(19,3,'updated_at','timestamp','Updated At',0,0,0,0,0,0,NULL,4),(20,3,'display_name','text','Display Name',1,1,1,1,1,1,NULL,5),(21,1,'role_id','text','Role',1,1,1,1,1,1,NULL,9),(22,6,'id','text','Id',1,0,0,0,0,0,'{}',1),(27,6,'created_at','timestamp','Created At',0,1,1,1,0,1,'{}',7),(28,6,'updated_at','timestamp','Updated At',0,0,0,0,0,0,'{}',9),(30,8,'id','text','Id',1,0,0,0,0,0,'{}',1),(32,8,'name','text','Name',1,1,1,1,1,1,'{}',3),(33,8,'link','text','Link',1,1,1,1,1,1,'{}',4),(34,8,'created_at','timestamp','Created At',0,1,1,1,0,1,'{}',5),(35,8,'updated_at','timestamp','Updated At',0,0,0,0,0,0,'{}',6),(41,6,'key','text','Key',1,1,1,1,1,1,'{}',2),(42,6,'value','markdown_editor','Value',1,1,1,1,1,1,'{\"validation\":{\"rule\":\"required\"}}',3),(43,9,'id','number','ID',1,0,0,0,0,0,'\"\"',1),(44,9,'author_id','text','Author ID',1,0,0,0,0,0,'\"\"',2),(45,9,'title','text','Title',1,1,1,1,1,1,'\"\"',3),(46,9,'excerpt','text_area','Excerpt',0,0,1,1,1,1,'\"\"',4),(47,9,'body','markdown_editor','Body',0,0,1,1,1,1,'\"\"',5),(48,9,'slug','text','Slug',1,0,1,1,1,1,'{\"slugify\":{\"origin\":\"title\"},\"validation\":{\"rule\":\"unique:pages,slug\"}}',6),(49,9,'meta_description','text','Meta Description',0,0,1,1,1,1,'\"\"',7),(50,9,'status','select_dropdown','Status',1,1,1,1,1,1,'{\"default\":\"INACTIVE\",\"options\":{\"INACTIVE\":\"INACTIVE\",\"ACTIVE\":\"ACTIVE\"}}',8),(51,9,'created_at','timestamp','Created At',0,1,1,0,0,0,'\"\"',9),(52,9,'updated_at','timestamp','Updated At',0,0,0,0,0,0,'\"\"',10),(53,9,'image','image','Image',0,1,1,1,1,1,'\"\"',11);
+INSERT INTO `data_rows` VALUES (1,1,'id','number','ID',1,0,0,0,0,0,NULL,1),(2,1,'name','text','Name',1,1,1,1,1,1,NULL,2),(3,1,'email','text','Email',1,1,1,1,1,1,NULL,3),(4,1,'password','password','Password',1,0,0,1,1,0,NULL,4),(5,1,'remember_token','text','Remember Token',0,0,0,0,0,0,NULL,5),(6,1,'created_at','timestamp','Created At',0,1,1,0,0,0,NULL,6),(7,1,'updated_at','timestamp','Updated At',0,0,0,0,0,0,NULL,7),(8,1,'avatar','image','Avatar',0,1,1,1,1,1,NULL,8),(9,1,'user_belongsto_role_relationship','relationship','Role',0,1,1,1,1,0,'{\"model\":\"TCG\\\\Voyager\\\\Models\\\\Role\",\"table\":\"roles\",\"type\":\"belongsTo\",\"column\":\"role_id\",\"key\":\"id\",\"label\":\"display_name\",\"pivot_table\":\"roles\",\"pivot\":0}',10),(10,1,'user_belongstomany_role_relationship','relationship','Roles',0,1,1,1,1,0,'{\"model\":\"TCG\\\\Voyager\\\\Models\\\\Role\",\"table\":\"roles\",\"type\":\"belongsToMany\",\"column\":\"id\",\"key\":\"id\",\"label\":\"display_name\",\"pivot_table\":\"user_roles\",\"pivot\":\"1\",\"taggable\":\"0\"}',11),(11,1,'settings','hidden','Settings',0,0,0,0,0,0,NULL,12),(12,2,'id','number','ID',1,0,0,0,0,0,NULL,1),(13,2,'name','text','Name',1,1,1,1,1,1,NULL,2),(14,2,'created_at','timestamp','Created At',0,0,0,0,0,0,NULL,3),(15,2,'updated_at','timestamp','Updated At',0,0,0,0,0,0,NULL,4),(16,3,'id','number','ID',1,0,0,0,0,0,NULL,1),(17,3,'name','text','Name',1,1,1,1,1,1,NULL,2),(18,3,'created_at','timestamp','Created At',0,0,0,0,0,0,NULL,3),(19,3,'updated_at','timestamp','Updated At',0,0,0,0,0,0,NULL,4),(20,3,'display_name','text','Display Name',1,1,1,1,1,1,NULL,5),(21,1,'role_id','text','Role',1,1,1,1,1,1,NULL,9),(33,6,'id','text','Id',1,0,0,0,0,0,'{}',1),(34,6,'key','text','Key',1,1,1,1,1,1,'{}',2),(35,6,'value','text','Value',1,1,1,1,1,1,'{}',3),(36,6,'created_at','timestamp','Created At',0,1,1,1,0,1,'{}',4),(37,6,'updated_at','timestamp','Updated At',0,0,0,0,0,0,'{}',5),(38,7,'id','number','ID',1,0,0,0,0,0,'\"\"',1),(39,7,'author_id','text','Author ID',1,0,0,0,0,0,'\"\"',2),(40,7,'title','text','Title',1,1,1,1,1,1,'\"\"',3),(41,7,'excerpt','text_area','Excerpt',0,0,1,1,1,1,'\"\"',4),(42,7,'body','rich_text_box','Body',1,0,1,1,1,1,'\"\"',5),(43,7,'slug','text','Slug',1,0,1,1,1,1,'{\"slugify\":{\"origin\":\"title\"},\"validation\":{\"rule\":\"unique:pages,slug\"}}',6),(44,7,'meta_description','text','Meta Description',0,0,1,1,1,1,'\"\"',7),(45,7,'status','select_dropdown','Status',1,1,1,1,1,1,'{\"default\":\"INACTIVE\",\"options\":{\"INACTIVE\":\"INACTIVE\",\"ACTIVE\":\"ACTIVE\"}}',8),(46,7,'created_at','timestamp','Created At',1,1,1,0,0,0,'\"\"',9),(47,7,'updated_at','timestamp','Updated At',1,0,0,0,0,0,'\"\"',10),(48,7,'image','image','Image',0,1,1,1,1,1,'\"\"',11),(49,8,'id','text','Id',1,0,0,0,0,0,'{}',1),(50,8,'name','text','Name',1,1,1,1,1,1,'{}',2),(51,8,'link','text','Link',1,1,1,1,1,1,'{}',3),(52,8,'created_at','timestamp','Created At',0,1,1,1,0,1,'{}',4),(53,8,'updated_at','timestamp','Updated At',0,0,0,0,0,0,'{}',5);
 /*!40000 ALTER TABLE `data_rows` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -87,7 +86,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `data_types`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `data_types` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -107,7 +106,7 @@ CREATE TABLE `data_types` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `data_types_name_unique` (`name`),
   UNIQUE KEY `data_types_slug_unique` (`slug`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -116,7 +115,7 @@ CREATE TABLE `data_types` (
 
 LOCK TABLES `data_types` WRITE;
 /*!40000 ALTER TABLE `data_types` DISABLE KEYS */;
-INSERT INTO `data_types` VALUES (1,'users','users','User','Users','voyager-person','TCG\\Voyager\\Models\\User','TCG\\Voyager\\Policies\\UserPolicy','TCG\\Voyager\\Http\\Controllers\\VoyagerUserController','',1,0,NULL,'2020-01-22 06:58:22','2020-01-22 06:58:22'),(2,'menus','menus','Menu','Menus','voyager-list','TCG\\Voyager\\Models\\Menu',NULL,'','',1,0,NULL,'2020-01-22 06:58:22','2020-01-22 06:58:22'),(3,'roles','roles','Role','Roles','voyager-lock','TCG\\Voyager\\Models\\Role',NULL,'','',1,0,NULL,'2020-01-22 06:58:22','2020-01-22 06:58:22'),(6,'configurations','configurations','Configuration','Configurations','voyager-settings','App\\Configuration',NULL,NULL,NULL,1,0,'{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}','2020-01-22 07:35:27','2020-02-03 07:30:24'),(8,'links','links','Link','Links','voyager-dot','App\\Link',NULL,NULL,NULL,1,0,'{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}','2020-01-22 08:08:07','2020-02-03 07:24:57'),(9,'pages','pages','Page','Pages','voyager-file-text','Pvtl\\VoyagerPages\\Page',NULL,'\\Pvtl\\VoyagerPages\\Http\\Controllers\\PageController',NULL,1,0,'{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"desc\",\"default_search_key\":null,\"scope\":null}','2020-02-03 07:45:34','2020-02-03 08:34:30');
+INSERT INTO `data_types` VALUES (1,'users','users','User','Users','voyager-person','TCG\\Voyager\\Models\\User','TCG\\Voyager\\Policies\\UserPolicy','TCG\\Voyager\\Http\\Controllers\\VoyagerUserController','',1,0,NULL,'2020-06-05 20:17:49','2020-06-05 20:17:49'),(2,'menus','menus','Menu','Menus','voyager-list','TCG\\Voyager\\Models\\Menu',NULL,'','',1,0,NULL,'2020-06-05 20:17:49','2020-06-05 20:17:49'),(3,'roles','roles','Role','Roles','voyager-lock','TCG\\Voyager\\Models\\Role',NULL,'','',1,0,NULL,'2020-06-05 20:17:49','2020-06-05 20:17:49'),(6,'configurations','configurations','Configuration','Configurations',NULL,'App\\Configuration',NULL,NULL,NULL,1,0,'{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null}','2020-06-05 20:20:50','2020-06-05 20:20:50'),(7,'pages','pages','Page','Pages','voyager-file-text','Pvtl\\VoyagerPages\\Page',NULL,'\\Pvtl\\VoyagerPages\\Http\\Controllers\\PageController','',1,0,NULL,'2020-06-05 20:23:18','2020-06-05 20:23:18'),(8,'links','links','Link','Links',NULL,'App\\Link',NULL,NULL,NULL,1,0,'{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null}','2020-06-06 08:50:52','2020-06-06 08:50:52');
 /*!40000 ALTER TABLE `data_types` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -126,7 +125,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `failed_jobs`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `failed_jobs` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `connection` text COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -153,7 +152,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `links`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `links` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -161,7 +160,7 @@ CREATE TABLE `links` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -170,7 +169,7 @@ CREATE TABLE `links` (
 
 LOCK TABLES `links` WRITE;
 /*!40000 ALTER TABLE `links` DISABLE KEYS */;
-INSERT INTO `links` VALUES (1,'Example','https://www.google.es','2020-02-03 07:32:35','2020-02-03 07:32:35');
+INSERT INTO `links` VALUES (1,'ConquerCMS','https://www.forum.darkfoxdeveloper.com','2020-06-06 08:51:00','2020-06-06 08:52:04'),(2,'Elitepvpers','https://www.elitepvpers.com/','2020-06-06 08:51:41','2020-06-06 08:51:41');
 /*!40000 ALTER TABLE `links` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -180,7 +179,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `menu_items`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `menu_items` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `menu_id` int(10) unsigned DEFAULT NULL,
@@ -198,7 +197,7 @@ CREATE TABLE `menu_items` (
   PRIMARY KEY (`id`),
   KEY `menu_items_menu_id_foreign` (`menu_id`),
   CONSTRAINT `menu_items_menu_id_foreign` FOREIGN KEY (`menu_id`) REFERENCES `menus` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -207,7 +206,7 @@ CREATE TABLE `menu_items` (
 
 LOCK TABLES `menu_items` WRITE;
 /*!40000 ALTER TABLE `menu_items` DISABLE KEYS */;
-INSERT INTO `menu_items` VALUES (1,1,'Dashboard','','_self','voyager-boat',NULL,NULL,1,'2020-01-22 06:58:22','2020-01-22 06:58:22','voyager.dashboard',NULL),(2,1,'Media','','_self','voyager-images',NULL,NULL,6,'2020-01-22 06:58:22','2020-01-22 08:23:23','voyager.media.index',NULL),(3,1,'Users','','_self','voyager-person',NULL,NULL,5,'2020-01-22 06:58:22','2020-01-22 08:23:23','voyager.users.index',NULL),(4,1,'Roles','','_self','voyager-lock',NULL,NULL,4,'2020-01-22 06:58:22','2020-01-22 08:23:23','voyager.roles.index',NULL),(5,1,'Tools','','_self','voyager-tools',NULL,NULL,7,'2020-01-22 06:58:22','2020-01-22 08:23:23',NULL,NULL),(6,1,'Menu Builder','','_self','voyager-list',NULL,5,1,'2020-01-22 06:58:22','2020-01-22 08:21:34','voyager.menus.index',NULL),(7,1,'Database','','_self','voyager-data',NULL,5,2,'2020-01-22 06:58:22','2020-01-22 08:21:34','voyager.database.index',NULL),(8,1,'Compass','','_self','voyager-compass',NULL,5,3,'2020-01-22 06:58:22','2020-01-22 08:21:34','voyager.compass.index',NULL),(9,1,'BREAD','','_self','voyager-bread',NULL,5,4,'2020-01-22 06:58:22','2020-01-22 08:21:34','voyager.bread.index',NULL),(10,1,'Settings','','_self','voyager-settings',NULL,NULL,8,'2020-01-22 06:58:22','2020-01-22 08:23:23','voyager.settings.index',NULL),(11,1,'Hooks','','_self','voyager-hook',NULL,5,5,'2020-01-22 06:58:23','2020-01-22 08:21:34','voyager.hooks',NULL),(12,1,'Configurations','','_self','voyager-settings','#000000',NULL,2,'2020-01-22 07:35:27','2020-01-22 08:21:40','voyager.configurations.index','null'),(13,1,'Links','','_self','voyager-dot','#000000',NULL,3,'2020-01-22 08:08:07','2020-01-22 08:23:23','voyager.links.index','null'),(14,2,'Home','/','_self',NULL,'#000000',NULL,9,'2020-01-22 08:52:59','2020-01-22 08:52:59',NULL,''),(15,2,'Register','#','_self',NULL,'#000000',NULL,10,'2020-01-22 08:56:52','2020-01-22 08:56:52',NULL,''),(16,2,'Downloads','#','_self',NULL,'#000000',NULL,11,'2020-01-22 08:57:19','2020-01-22 08:57:25',NULL,''),(17,2,'Store','#','_self',NULL,'#000000',NULL,12,'2020-01-22 08:57:35','2020-01-22 08:57:35',NULL,''),(18,3,'Login','#','_self',NULL,'#000000',NULL,4,'2020-01-22 08:59:32','2020-01-22 09:12:57',NULL,''),(19,3,'Forgot Pass?','#','_self',NULL,'#000000',NULL,5,'2020-01-22 08:59:45','2020-01-22 09:12:57',NULL,''),(20,3,'Server','#SERVER_STATUS','_self',NULL,'#000000',NULL,1,'2020-01-22 09:01:44','2020-01-22 09:01:47',NULL,''),(21,3,'Online Players','#ONLINE_PLAYERS','_self',NULL,'#000000',NULL,2,'2020-01-22 09:02:04','2020-01-22 09:02:07',NULL,''),(22,3,'Accounts','#ACCOUNTS','_self',NULL,'#000000',NULL,3,'2020-01-22 09:02:31','2020-01-22 09:12:57',NULL,''),(23,1,'Pages','','_self','voyager-file-text',NULL,NULL,7,'2020-02-03 07:45:34','2020-02-03 07:45:34','voyager.pages.index',NULL);
+INSERT INTO `menu_items` VALUES (1,1,'Dashboard','','_self','voyager-boat',NULL,NULL,1,'2020-06-05 20:17:49','2020-06-05 20:17:49','voyager.dashboard',NULL),(2,1,'Media','','_self','voyager-images',NULL,NULL,5,'2020-06-05 20:17:49','2020-06-05 20:17:49','voyager.media.index',NULL),(3,1,'Users','','_self','voyager-person',NULL,NULL,3,'2020-06-05 20:17:49','2020-06-05 20:17:49','voyager.users.index',NULL),(4,1,'Roles','','_self','voyager-lock',NULL,NULL,2,'2020-06-05 20:17:49','2020-06-05 20:17:49','voyager.roles.index',NULL),(5,1,'Tools','','_self','voyager-tools',NULL,NULL,9,'2020-06-05 20:17:49','2020-06-05 20:17:49',NULL,NULL),(6,1,'Menu Builder','','_self','voyager-list',NULL,5,10,'2020-06-05 20:17:49','2020-06-05 20:17:49','voyager.menus.index',NULL),(7,1,'Database','','_self','voyager-data',NULL,5,11,'2020-06-05 20:17:49','2020-06-05 20:17:49','voyager.database.index',NULL),(8,1,'Compass','','_self','voyager-compass',NULL,5,12,'2020-06-05 20:17:49','2020-06-05 20:17:49','voyager.compass.index',NULL),(9,1,'BREAD','','_self','voyager-bread',NULL,5,13,'2020-06-05 20:17:49','2020-06-05 20:17:49','voyager.bread.index',NULL),(10,1,'Settings','','_self','voyager-settings',NULL,NULL,14,'2020-06-05 20:17:49','2020-06-05 20:17:49','voyager.settings.index',NULL),(11,1,'Hooks','','_self','voyager-hook',NULL,5,13,'2020-06-05 20:17:50','2020-06-05 20:17:50','voyager.hooks',NULL),(13,1,'Configurations','','_self','voyager-settings','#000000',NULL,16,'2020-06-05 20:20:50','2020-06-06 08:58:43','voyager.configurations.index','null'),(14,1,'Pages','','_self','voyager-file-text',NULL,NULL,7,'2020-06-05 20:23:18','2020-06-05 20:23:18','voyager.pages.index',NULL),(16,3,'SERVER_STATUS','#SERVER_STATUS','_self',NULL,'#000000',NULL,18,'2020-06-05 20:26:44','2020-06-05 20:32:31',NULL,''),(19,3,'ONLINE_PLAYERS','#ONLINE_PLAYERS','_self',NULL,'#000000',NULL,19,'2020-06-05 20:32:25','2020-06-05 20:32:25',NULL,''),(20,3,'ACCOUNTS','#ACCOUNTS','_self',NULL,'#000000',NULL,20,'2020-06-05 20:32:43','2020-06-05 20:32:43',NULL,''),(21,5,'Home','/home','_self',NULL,'#000000',NULL,21,'2020-06-06 08:49:44','2020-06-06 11:43:04',NULL,''),(22,1,'Links','','_self','voyager-list-add','#000000',NULL,22,'2020-06-06 08:50:52','2020-06-06 08:59:17','voyager.links.index','null'),(23,5,'Register','/register','_self',NULL,'#000000',NULL,23,'2020-06-06 09:00:18','2020-06-06 09:00:18',NULL,''),(24,5,'Downloads','/downloads','_self',NULL,'#000000',NULL,24,'2020-06-07 14:10:08','2020-06-07 14:10:08',NULL,''),(25,5,'Shop','/shop','_self',NULL,'#000000',NULL,25,'2020-06-07 14:10:16','2020-06-07 14:10:16',NULL,'');
 /*!40000 ALTER TABLE `menu_items` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -217,7 +216,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `menus`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `menus` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -225,7 +224,7 @@ CREATE TABLE `menus` (
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `menus_name_unique` (`name`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -234,7 +233,7 @@ CREATE TABLE `menus` (
 
 LOCK TABLES `menus` WRITE;
 /*!40000 ALTER TABLE `menus` DISABLE KEYS */;
-INSERT INTO `menus` VALUES (1,'admin','2020-01-22 06:58:22','2020-01-22 06:58:22'),(2,'main','2020-01-22 08:51:41','2020-01-22 08:58:07'),(3,'secundary','2020-01-22 08:58:30','2020-01-22 08:58:30');
+INSERT INTO `menus` VALUES (1,'admin','2020-06-05 20:17:49','2020-06-05 20:17:49'),(3,'secundary','2020-06-05 20:25:42','2020-06-05 20:29:27'),(5,'main','2020-06-05 20:30:42','2020-06-05 20:30:42');
 /*!40000 ALTER TABLE `menus` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -244,13 +243,13 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `migrations`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `migrations` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `migration` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `batch` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -259,7 +258,7 @@ CREATE TABLE `migrations` (
 
 LOCK TABLES `migrations` WRITE;
 /*!40000 ALTER TABLE `migrations` DISABLE KEYS */;
-INSERT INTO `migrations` VALUES (1,'2014_10_12_000000_create_users_table',1),(2,'2014_10_12_100000_create_password_resets_table',1),(3,'2016_01_01_000000_add_voyager_user_fields',1),(4,'2016_01_01_000000_create_data_types_table',1),(5,'2016_05_19_173453_create_menu_table',1),(6,'2016_10_21_190000_create_roles_table',1),(7,'2016_10_21_190000_create_settings_table',1),(8,'2016_11_30_135954_create_permission_table',1),(9,'2016_11_30_141208_create_permission_role_table',1),(10,'2016_12_26_201236_data_types__add__server_side',1),(11,'2017_01_13_000000_add_route_to_menu_items_table',1),(12,'2017_01_14_005015_create_translations_table',1),(13,'2017_01_15_000000_make_table_name_nullable_in_permissions_table',1),(14,'2017_03_06_000000_add_controller_to_data_types_table',1),(15,'2017_04_21_000000_add_order_to_data_rows_table',1),(16,'2017_07_05_210000_add_policyname_to_data_types_table',1),(17,'2017_08_05_000000_add_group_to_settings_table',1),(18,'2017_11_26_013050_add_user_role_relationship',1),(19,'2017_11_26_015000_create_user_roles_table',1),(20,'2018_03_11_000000_add_user_settings',1),(21,'2018_03_14_000000_add_details_to_data_types_table',1),(22,'2018_03_16_000000_make_settings_value_nullable',1),(23,'2019_08_19_000000_create_failed_jobs_table',1),(27,'2020_01_22_081201_config_table',2),(28,'2018_04_18_000000_create_pages_table',3),(29,'2018_05_11_000001_remove_pages_keywords_field',3);
+INSERT INTO `migrations` VALUES (1,'2014_10_12_000000_create_users_table',1),(2,'2014_10_12_100000_create_password_resets_table',1),(3,'2016_01_01_000000_add_voyager_user_fields',1),(4,'2016_01_01_000000_create_data_types_table',1),(5,'2016_05_19_173453_create_menu_table',1),(6,'2016_10_21_190000_create_roles_table',1),(7,'2016_10_21_190000_create_settings_table',1),(8,'2016_11_30_135954_create_permission_table',1),(9,'2016_11_30_141208_create_permission_role_table',1),(10,'2016_12_26_201236_data_types__add__server_side',1),(11,'2017_01_13_000000_add_route_to_menu_items_table',1),(12,'2017_01_14_005015_create_translations_table',1),(13,'2017_01_15_000000_make_table_name_nullable_in_permissions_table',1),(14,'2017_03_06_000000_add_controller_to_data_types_table',1),(15,'2017_04_21_000000_add_order_to_data_rows_table',1),(16,'2017_07_05_210000_add_policyname_to_data_types_table',1),(17,'2017_08_05_000000_add_group_to_settings_table',1),(18,'2017_11_26_013050_add_user_role_relationship',1),(19,'2017_11_26_015000_create_user_roles_table',1),(20,'2018_03_11_000000_add_user_settings',1),(21,'2018_03_14_000000_add_details_to_data_types_table',1),(22,'2018_03_16_000000_make_settings_value_nullable',1),(23,'2018_04_18_000000_create_pages_table',1),(24,'2018_05_11_000001_remove_pages_keywords_field',1),(25,'2019_08_19_000000_create_failed_jobs_table',1),(26,'2020_01_22_081201_config_table',1);
 /*!40000 ALTER TABLE `migrations` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -269,7 +268,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `pages`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `pages` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `author_id` int(11) NOT NULL,
@@ -293,7 +292,7 @@ CREATE TABLE `pages` (
 
 LOCK TABLES `pages` WRITE;
 /*!40000 ALTER TABLE `pages` DISABLE KEYS */;
-INSERT INTO `pages` VALUES (5,1,'Home - Events',NULL,'<div class=\"row justify-content-center align-items-center\">\r\n	<div class=\"col-lg-4\">\r\n			<div class=\"card\" style=\"width: 18rem;\">\r\n					<img class=\"card-img-top\" src=\"http://oldconquer.com/img/Game/Banshee.png\" alt=\"SnowBanshee\">\r\n					<div class=\"card-body\">\r\n							<h3 class=\"card-title\"><i class=\"fas fa-check-double card-icon\"></i>&nbsp;Snow Banshee</h3>\r\n							<p class=\"card-text\">Good rewards for kill a boss</p>\r\n					</div>\r\n			</div>\r\n	</div>\r\n	<div class=\"col-lg-4\">\r\n			<div class=\"card\" style=\"width: 18rem;\">\r\n					<img class=\"card-img-top\" src=\"http://oldconquer.com/img/Game/Banshee.png\" alt=\"SnowBanshee\">\r\n					<div class=\"card-body\">\r\n							<h3 class=\"card-title\"><i class=\"fas fa-check-double card-icon\"></i>&nbsp;Snow Banshee</h3>\r\n							<p class=\"card-text\">Good rewards for kill a boss</p>\r\n					</div>\r\n			</div>\r\n	</div>\r\n	<div class=\"col-lg-4\">\r\n			<div class=\"card\" style=\"width: 18rem;\">\r\n					<img class=\"card-img-top\" src=\"http://oldconquer.com/img/Game/Banshee.png\" alt=\"SnowBanshee\">\r\n					<div class=\"card-body\">\r\n							<h3 class=\"card-title\"><i class=\"fas fa-check-double card-icon\"></i>&nbsp;Snow Banshee</h3>\r\n							<p class=\"card-text\">Good rewards for kill a boss</p>\r\n					</div>\r\n			</div>\r\n	</div>\r\n</div>',NULL,'home-events',NULL,'ACTIVE','2020-02-03 08:25:01','2020-02-03 08:35:22');
+INSERT INTO `pages` VALUES (1,1,'PartialHome',NULL,NULL,NULL,'partialhome',NULL,'ACTIVE','2020-06-05 20:23:18','2020-06-14 10:18:14'),(2,1,'PartialRegister',NULL,NULL,NULL,'partialregister',NULL,'ACTIVE','2020-06-05 20:23:18','2020-06-07 14:08:02'),(4,1,'PartialDownloads',NULL,'<p><strong>CLIENT AND PATCH LINKS HERE</strong></p>',NULL,'partialdownloads',NULL,'ACTIVE','2020-06-07 14:07:28','2020-06-07 14:08:50'),(5,1,'PartialShop',NULL,'<p>shop page html here</p>',NULL,'partialshop',NULL,'ACTIVE','2020-06-07 14:08:17','2020-06-07 14:11:09');
 /*!40000 ALTER TABLE `pages` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -303,7 +302,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `password_resets`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `password_resets` (
   `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `token` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -327,7 +326,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `permission_role`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `permission_role` (
   `permission_id` bigint(20) unsigned NOT NULL,
   `role_id` bigint(20) unsigned NOT NULL,
@@ -345,7 +344,7 @@ CREATE TABLE `permission_role` (
 
 LOCK TABLES `permission_role` WRITE;
 /*!40000 ALTER TABLE `permission_role` DISABLE KEYS */;
-INSERT INTO `permission_role` VALUES (1,1),(2,1),(3,1),(4,1),(5,1),(6,1),(7,1),(8,1),(9,1),(10,1),(11,1),(12,1),(13,1),(14,1),(15,1),(16,1),(17,1),(18,1),(19,1),(20,1),(21,1),(22,1),(23,1),(24,1),(25,1),(26,1),(27,1),(28,1),(29,1),(30,1),(31,1),(32,1),(33,1),(34,1),(35,1),(36,1),(37,1),(38,1),(39,1),(40,1),(41,1),(42,1),(43,1),(44,1),(45,1),(46,1);
+INSERT INTO `permission_role` VALUES (1,1),(2,1),(3,1),(4,1),(5,1),(6,1),(7,1),(8,1),(9,1),(10,1),(11,1),(12,1),(13,1),(14,1),(15,1),(16,1),(17,1),(18,1),(19,1),(20,1),(21,1),(22,1),(23,1),(24,1),(25,1),(26,1),(32,1),(33,1),(34,1),(35,1),(36,1),(37,1),(38,1),(39,1),(40,1),(41,1),(42,1),(43,1),(44,1),(45,1),(46,1),(47,1),(48,1),(49,1),(50,1),(51,1);
 /*!40000 ALTER TABLE `permission_role` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -355,7 +354,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `permissions`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `permissions` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `key` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -364,7 +363,7 @@ CREATE TABLE `permissions` (
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `permissions_key_index` (`key`)
-) ENGINE=InnoDB AUTO_INCREMENT=47 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=52 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -373,7 +372,7 @@ CREATE TABLE `permissions` (
 
 LOCK TABLES `permissions` WRITE;
 /*!40000 ALTER TABLE `permissions` DISABLE KEYS */;
-INSERT INTO `permissions` VALUES (1,'browse_admin',NULL,'2020-01-22 06:58:22','2020-01-22 06:58:22'),(2,'browse_bread',NULL,'2020-01-22 06:58:23','2020-01-22 06:58:23'),(3,'browse_database',NULL,'2020-01-22 06:58:23','2020-01-22 06:58:23'),(4,'browse_media',NULL,'2020-01-22 06:58:23','2020-01-22 06:58:23'),(5,'browse_compass',NULL,'2020-01-22 06:58:23','2020-01-22 06:58:23'),(6,'browse_menus','menus','2020-01-22 06:58:23','2020-01-22 06:58:23'),(7,'read_menus','menus','2020-01-22 06:58:23','2020-01-22 06:58:23'),(8,'edit_menus','menus','2020-01-22 06:58:23','2020-01-22 06:58:23'),(9,'add_menus','menus','2020-01-22 06:58:23','2020-01-22 06:58:23'),(10,'delete_menus','menus','2020-01-22 06:58:23','2020-01-22 06:58:23'),(11,'browse_roles','roles','2020-01-22 06:58:23','2020-01-22 06:58:23'),(12,'read_roles','roles','2020-01-22 06:58:23','2020-01-22 06:58:23'),(13,'edit_roles','roles','2020-01-22 06:58:23','2020-01-22 06:58:23'),(14,'add_roles','roles','2020-01-22 06:58:23','2020-01-22 06:58:23'),(15,'delete_roles','roles','2020-01-22 06:58:23','2020-01-22 06:58:23'),(16,'browse_users','users','2020-01-22 06:58:23','2020-01-22 06:58:23'),(17,'read_users','users','2020-01-22 06:58:23','2020-01-22 06:58:23'),(18,'edit_users','users','2020-01-22 06:58:23','2020-01-22 06:58:23'),(19,'add_users','users','2020-01-22 06:58:23','2020-01-22 06:58:23'),(20,'delete_users','users','2020-01-22 06:58:23','2020-01-22 06:58:23'),(21,'browse_settings','settings','2020-01-22 06:58:23','2020-01-22 06:58:23'),(22,'read_settings','settings','2020-01-22 06:58:23','2020-01-22 06:58:23'),(23,'edit_settings','settings','2020-01-22 06:58:23','2020-01-22 06:58:23'),(24,'add_settings','settings','2020-01-22 06:58:23','2020-01-22 06:58:23'),(25,'delete_settings','settings','2020-01-22 06:58:23','2020-01-22 06:58:23'),(26,'browse_hooks',NULL,'2020-01-22 06:58:23','2020-01-22 06:58:23'),(27,'browse_configurations','configurations','2020-01-22 07:35:27','2020-01-22 07:35:27'),(28,'read_configurations','configurations','2020-01-22 07:35:27','2020-01-22 07:35:27'),(29,'edit_configurations','configurations','2020-01-22 07:35:27','2020-01-22 07:35:27'),(30,'add_configurations','configurations','2020-01-22 07:35:27','2020-01-22 07:35:27'),(31,'delete_configurations','configurations','2020-01-22 07:35:27','2020-01-22 07:35:27'),(32,'browse_links','links','2020-01-22 08:08:07','2020-01-22 08:08:07'),(33,'read_links','links','2020-01-22 08:08:07','2020-01-22 08:08:07'),(34,'edit_links','links','2020-01-22 08:08:07','2020-01-22 08:08:07'),(35,'add_links','links','2020-01-22 08:08:07','2020-01-22 08:08:07'),(36,'delete_links','links','2020-01-22 08:08:07','2020-01-22 08:08:07'),(37,'browse_pages',NULL,'2020-02-03 07:45:34','2020-02-03 07:45:34'),(38,'read_pages',NULL,'2020-02-03 07:45:34','2020-02-03 07:45:34'),(39,'edit_pages',NULL,'2020-02-03 07:45:34','2020-02-03 07:45:34'),(40,'add_pages',NULL,'2020-02-03 07:45:34','2020-02-03 07:45:34'),(41,'delete_pages',NULL,'2020-02-03 07:45:34','2020-02-03 07:45:34'),(42,'browse_pages','pages','2020-02-03 07:45:34','2020-02-03 07:45:34'),(43,'read_pages','pages','2020-02-03 07:45:34','2020-02-03 07:45:34'),(44,'edit_pages','pages','2020-02-03 07:45:34','2020-02-03 07:45:34'),(45,'add_pages','pages','2020-02-03 07:45:34','2020-02-03 07:45:34'),(46,'delete_pages','pages','2020-02-03 07:45:34','2020-02-03 07:45:34');
+INSERT INTO `permissions` VALUES (1,'browse_admin',NULL,'2020-06-05 20:17:50','2020-06-05 20:17:50'),(2,'browse_bread',NULL,'2020-06-05 20:17:50','2020-06-05 20:17:50'),(3,'browse_database',NULL,'2020-06-05 20:17:50','2020-06-05 20:17:50'),(4,'browse_media',NULL,'2020-06-05 20:17:50','2020-06-05 20:17:50'),(5,'browse_compass',NULL,'2020-06-05 20:17:50','2020-06-05 20:17:50'),(6,'browse_menus','menus','2020-06-05 20:17:50','2020-06-05 20:17:50'),(7,'read_menus','menus','2020-06-05 20:17:50','2020-06-05 20:17:50'),(8,'edit_menus','menus','2020-06-05 20:17:50','2020-06-05 20:17:50'),(9,'add_menus','menus','2020-06-05 20:17:50','2020-06-05 20:17:50'),(10,'delete_menus','menus','2020-06-05 20:17:50','2020-06-05 20:17:50'),(11,'browse_roles','roles','2020-06-05 20:17:50','2020-06-05 20:17:50'),(12,'read_roles','roles','2020-06-05 20:17:50','2020-06-05 20:17:50'),(13,'edit_roles','roles','2020-06-05 20:17:50','2020-06-05 20:17:50'),(14,'add_roles','roles','2020-06-05 20:17:50','2020-06-05 20:17:50'),(15,'delete_roles','roles','2020-06-05 20:17:50','2020-06-05 20:17:50'),(16,'browse_users','users','2020-06-05 20:17:50','2020-06-05 20:17:50'),(17,'read_users','users','2020-06-05 20:17:50','2020-06-05 20:17:50'),(18,'edit_users','users','2020-06-05 20:17:50','2020-06-05 20:17:50'),(19,'add_users','users','2020-06-05 20:17:50','2020-06-05 20:17:50'),(20,'delete_users','users','2020-06-05 20:17:50','2020-06-05 20:17:50'),(21,'browse_settings','settings','2020-06-05 20:17:50','2020-06-05 20:17:50'),(22,'read_settings','settings','2020-06-05 20:17:50','2020-06-05 20:17:50'),(23,'edit_settings','settings','2020-06-05 20:17:50','2020-06-05 20:17:50'),(24,'add_settings','settings','2020-06-05 20:17:50','2020-06-05 20:17:50'),(25,'delete_settings','settings','2020-06-05 20:17:50','2020-06-05 20:17:50'),(26,'browse_hooks',NULL,'2020-06-05 20:17:50','2020-06-05 20:17:50'),(32,'browse_configurations','configurations','2020-06-05 20:20:50','2020-06-05 20:20:50'),(33,'read_configurations','configurations','2020-06-05 20:20:50','2020-06-05 20:20:50'),(34,'edit_configurations','configurations','2020-06-05 20:20:50','2020-06-05 20:20:50'),(35,'add_configurations','configurations','2020-06-05 20:20:50','2020-06-05 20:20:50'),(36,'delete_configurations','configurations','2020-06-05 20:20:50','2020-06-05 20:20:50'),(37,'browse_pages',NULL,'2020-06-05 20:23:18','2020-06-05 20:23:18'),(38,'read_pages',NULL,'2020-06-05 20:23:18','2020-06-05 20:23:18'),(39,'edit_pages',NULL,'2020-06-05 20:23:18','2020-06-05 20:23:18'),(40,'add_pages',NULL,'2020-06-05 20:23:18','2020-06-05 20:23:18'),(41,'delete_pages',NULL,'2020-06-05 20:23:18','2020-06-05 20:23:18'),(42,'browse_pages','pages','2020-06-05 20:23:18','2020-06-05 20:23:18'),(43,'read_pages','pages','2020-06-05 20:23:18','2020-06-05 20:23:18'),(44,'edit_pages','pages','2020-06-05 20:23:18','2020-06-05 20:23:18'),(45,'add_pages','pages','2020-06-05 20:23:18','2020-06-05 20:23:18'),(46,'delete_pages','pages','2020-06-05 20:23:18','2020-06-05 20:23:18'),(47,'browse_links','links','2020-06-06 08:50:52','2020-06-06 08:50:52'),(48,'read_links','links','2020-06-06 08:50:52','2020-06-06 08:50:52'),(49,'edit_links','links','2020-06-06 08:50:52','2020-06-06 08:50:52'),(50,'add_links','links','2020-06-06 08:50:52','2020-06-06 08:50:52'),(51,'delete_links','links','2020-06-06 08:50:52','2020-06-06 08:50:52');
 /*!40000 ALTER TABLE `permissions` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -383,7 +382,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `roles`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `roles` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -401,7 +400,7 @@ CREATE TABLE `roles` (
 
 LOCK TABLES `roles` WRITE;
 /*!40000 ALTER TABLE `roles` DISABLE KEYS */;
-INSERT INTO `roles` VALUES (1,'admin','Administrator','2020-01-22 06:58:22','2020-01-22 06:58:22'),(2,'user','Normal User','2020-01-22 06:58:22','2020-01-22 06:58:22');
+INSERT INTO `roles` VALUES (1,'admin','Administrator','2020-06-05 20:17:20','2020-06-05 20:17:20'),(2,'user','Normal User','2020-06-05 20:17:49','2020-06-05 20:17:49');
 /*!40000 ALTER TABLE `roles` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -411,7 +410,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `settings`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `settings` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `key` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -442,7 +441,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `translations`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `translations` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `table_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -472,7 +471,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `user_roles`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `user_roles` (
   `user_id` bigint(20) unsigned NOT NULL,
   `role_id` bigint(20) unsigned NOT NULL,
@@ -499,7 +498,7 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `users`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `users` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `role_id` bigint(20) unsigned DEFAULT NULL,
@@ -525,7 +524,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,1,'DaRkFoxDeveloper','darkfoxdeveloper@gmail.com','users/default.png',NULL,'$2y$10$zPgQe9r7vP1QYfiuxDH.T.zlpsrlzA5qtJzsJ1MjyisWLq/wPFu4S','GD1fwdat8xKl2gbFNCiq7AW6cNxRjHGcrrZPrQSM9F0JNd1PLrmRpUbXEqIT',NULL,'2020-01-22 06:59:26','2020-01-22 06:59:26');
+INSERT INTO `users` VALUES (1,1,'DaRkFoxDeveloper','darkfoxdeveloper@gmail.com','users/default.png',NULL,'$2y$10$LzP9dtg9FE3dcCsJAnr48.SvRIDqWXwUv3cwXYwXh.ICO4BLVWacK','ecsd9M3eXWlUL82x8Q8ui6nuhuVnrxfFh0dCaxugulvhatRfut2qwCI1ZGYK',NULL,'2020-06-05 20:17:20','2020-06-05 20:17:20');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -546,4 +545,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-02-03 13:30:01
+-- Dump completed on 2020-06-14 15:28:52
