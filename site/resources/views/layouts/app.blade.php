@@ -37,6 +37,16 @@
                                                     <li class="nav-item"><a href="{{ $menu_item->url }}" class="nav-link">{{ $menu_item->title }}</a></li>
                                                 @endif
                                             @endforeach
+                                            <li class="nav-item dropdown">
+                                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                    {{ __('general.switch_lang') }}
+                                                </a>
+                                                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                                    @foreach(config('app.locales') as $lang)
+                                                            <a class="dropdown-item" href="/lang/{{ $lang }}">{{ $lang }}</a>
+                                                    @endforeach
+                                                </div>
+                                            </li>
                                         </ul>
                                     </div>
                                 </nav>

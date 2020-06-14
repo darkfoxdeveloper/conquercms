@@ -9,4 +9,5 @@ return [
     'about_title' => 'ABOUT US',
     'about_text' => 'ConquerCMS is a user friendly CMS for Conquer Online Private Servers.',
     'links_title' => 'LINKS',
+    'switch_lang' => 'Change language',
 ];
