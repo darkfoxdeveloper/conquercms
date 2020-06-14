@@ -20,6 +20,13 @@ Route::get('/shop', 'Controller@Shop');
 Route::get('login', 'ConquerAuthController@index');
 Route::post('login', 'ConquerAuthController@postLogin');
 
+Route::get('/lang/{locale}', function ($locale) {
+    if (in_array($locale, \Illuminate\Support\Facades\Config::get('app.locales'))) {
+        session(['locale' => $locale]);
+    }
+    return redirect()->back();
+});
+
 Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();
 });

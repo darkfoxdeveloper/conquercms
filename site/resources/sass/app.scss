@@ -142,3 +142,10 @@ footer:last-of-type {
         min-height: 330px;
     }
 }
+
+#footer.stikybottom {
+    position: fixed;
+    bottom:0;
+    left: 0;
+    right:0;
+}

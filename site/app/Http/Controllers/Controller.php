@@ -11,6 +11,7 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Routing\Controller as BaseController;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\View;
 use Pvtl\VoyagerPages\Page;
 use Illuminate\Support\Facades\Route;
@@ -24,8 +25,7 @@ class Controller extends BaseController
     {
         $status = false;
         try {
-            $configs = Configuration::all();
-            $status = fsockopen($configs->where('key', '=', 'host')->first(), $configs->where('key', '=', 'game_port')->first(), $errno, $errstr, 30);
+            $status = fsockopen(getenv("STATUS_HOST"), getenv("STATUS_PORT"), $errno, $errstr, 30);
         } catch (Exception $e) {
         }
         $routeActionName = explode("@", Route::getCurrentRoute()->getActionName())[1];
@@ -33,27 +33,47 @@ class Controller extends BaseController
         View::share('server_status', $status);
         View::share('online_players', ConquerEntity::where('Online', '=', '1')->count());
         View::share('total_accounts', ConquerUser::all()->count());
-        View::share('section', $routeActionName);
+        View::share('section', strtolower($routeActionName));
     }
 
-    public function Home()
+    public function Home(Route $route)
     {
-        return view('base-for-themes');
+        $routeActionName = strtolower(explode("@", Route::getCurrentRoute()->getActionName())[1]);
+        $view_to_show = 'themes.'.getenv('THEME_SELECTED').'.'.$routeActionName;
+        if (!view()->exists($view_to_show)) {
+            return view('layouts.404');
+        }
+        return view($view_to_show);
     }
 
     public function Register()
     {
-        return view('base-for-themes');
+        $routeActionName = strtolower(explode("@", Route::getCurrentRoute()->getActionName())[1]);
+        $view_to_show = 'themes.'.getenv('THEME_SELECTED').'.'.$routeActionName;
+        if (!view()->exists($view_to_show)) {
+            return view('layouts.404');
+        }
+        return view($view_to_show);
     }
 
     public function Downloads()
     {
-        return view('base-for-themes');
+        $routeActionName = strtolower(explode("@", Route::getCurrentRoute()->getActionName())[1]);
+        $view_to_show = 'themes.'.getenv('THEME_SELECTED').'.'.$routeActionName;
+        if (!view()->exists($view_to_show)) {
+            return view('layouts.404');
+        }
+        return view($view_to_show);
     }
 
     public function Shop()
     {
-        return view('base-for-themes');
+        $routeActionName = strtolower(explode("@", Route::getCurrentRoute()->getActionName())[1]);
+        $view_to_show = 'themes.'.getenv('THEME_SELECTED').'.'.$routeActionName;
+        if (!view()->exists($view_to_show)) {
+            return view('layouts.404');
+        }
+        return view($view_to_show);
     }
 
     public function PostRegister(Request $request)
