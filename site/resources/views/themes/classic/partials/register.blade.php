@@ -1,25 +1,58 @@
-@if (isset($message))
-<div class="alert alert-{{ $message_type }}" role="alert">
-  {{ $message }}
-</div>
+@if ($message = Session::get('success'))
+    <div class="alert alert-success alert-block">
+        <button type="button" class="close" data-dismiss="alert">×</button>
+        <strong>{{ $message }}</strong>
+    </div>
+@endif
+
+
+@if ($message = Session::get('error'))
+    <div class="alert alert-danger alert-block">
+        <button type="button" class="close" data-dismiss="alert">×</button>
+        <strong>{{ $message }}</strong>
+    </div>
+@endif
+
+
+@if ($message = Session::get('warning'))
+    <div class="alert alert-warning alert-block">
+        <button type="button" class="close" data-dismiss="alert">×</button>
+        <strong>{{ $message }}</strong>
+    </div>
+@endif
+
+
+@if ($message = Session::get('info'))
+    <div class="alert alert-info alert-block">
+        <button type="button" class="close" data-dismiss="alert">×</button>
+        <strong>{{ $message }}</strong>
+    </div>
+@endif
+
+
+@if ($errors->any())
+    <div class="alert alert-danger">
+        <button type="button" class="close" data-dismiss="alert">×</button>
+        Please check the form below for errors
+    </div>
 @endif
 <form action="/register" method="POST">
   <div class="form-group">
-    <label for="username">Username</label>
-    <input type="text" class="form-control" id="username" aria-describedby="usernameHelp" placeholder="Enter username" name="username">
-    <small id="usernameHelp" class="form-text text-muted">We'll never share your username with anyone else.</small>
+    <label for="username">{{ __('register.username') }}</label>
+    <input type="text" class="form-control" id="username" aria-describedby="usernameHelp" placeholder="{{ __('register.username_placeholder') }}" name="username">
+    <small id="usernameHelp" class="form-text text-muted">{{ __('register.username_helper') }}</small>
   </div>
   <div class="form-group">
-    <label for="Password">Password</label>
-    <input type="password" class="form-control" id="Password" placeholder="Password" name="password">
+    <label for="Password">{{ __('register.password') }}</label>
+    <input type="password" class="form-control" id="Password" placeholder="{{ __('register.password_placeholder') }}" name="password">
   </div>
   <div class="form-group">
-    <label for="Email">Email</label>
-    <input type="email" class="form-control" id="Email" aria-describedby="EmailHelp" placeholder="Email"  name="email">
-    <small id="EmailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+    <label for="Email">{{ __('register.email') }}</label>
+    <input type="email" class="form-control" id="Email" aria-describedby="EmailHelp" placeholder="{{ __('register.email_placeholder') }}"  name="email">
+    <small id="EmailHelp" class="form-text text-muted">{{ __('register.email_helper') }}</small>
   </div>
   @csrf
   <div class="text-right">
-    <button type="submit" class="btn btn-primary">Register</button>
+    <button type="submit" class="btn btn-action">{{ __('register.action') }}</button>
   </div>
 </form>

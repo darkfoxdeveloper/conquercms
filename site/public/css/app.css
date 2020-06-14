@@ -17423,3 +17423,62 @@ footer:last-of-type .footer-mh {
   right: 0;
 }
 
+.section-downloads .download-box > div {
+  min-height: 300px;
+  background: #36333c;
+  border-radius: 10px;
+  color: white;
+  text-align: center;
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+
+.section-downloads .download-box > div .download-icon {
+  font-size: 80px;
+  margin-top: 15px;
+}
+
+.section-downloads .download-box > div .download-list {
+  padding: 0;
+}
+
+.section-downloads .download-box > div .download-list li {
+  display: block;
+  background-color: grey;
+  padding: 10px;
+  width: 80%;
+  margin: auto;
+  margin-top: 15px;
+  color: white;
+}
+
+.section-downloads .download-box > div .download-list li a {
+  color: white;
+  display: block;
+}
+
+.section-downloads .download-box > div .download-list li:hover {
+  color: white;
+  opacity: 0.6;
+}
+
+.section-downloads .download-box > div .download-list li:hover a {
+  color: white;
+}
+
+.section-setup .setup-title {
+  font-weight: bold;
+  font-size: 28px;
+  margin-bottom: 15px;
+}
+
+.btn-action {
+  background-color: #325e76f2;
+  color: white;
+}
+
+.btn-action:hover {
+  color: white;
+  opacity: 0.6;
+}
+

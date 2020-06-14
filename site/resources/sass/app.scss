@@ -149,3 +149,69 @@ footer:last-of-type {
     left: 0;
     right:0;
 }
+
+// Downloads page
+.section-downloads {
+    .download-box > div {
+        min-height: 300px;
+        background: #36333c;
+        border-radius: 10px;
+        color: white;
+        text-align: center;
+        padding-top: 30px;
+        padding-bottom: 30px;
+
+        .download-icon {
+            font-size: 80px;
+            margin-top: 15px;
+        }
+
+        .download-list {
+            padding: 0;
+
+            li {
+                display: block;
+                background-color: grey;
+                padding: 10px;
+                width: 80%;
+                margin: auto;
+                margin-top: 15px;
+                color: white;
+
+                a {
+                    color: white;
+                    display: block;
+                }
+
+                &:hover {
+                    color: white;
+                    opacity: 0.6;
+
+                    a {
+                        color: white;
+                    }
+                }
+            }
+        }
+    }
+}
+
+// Setup page
+.section-setup {
+    .setup-title {
+        font-weight: bold;
+        font-size: 28px;
+        margin-bottom: 15px;
+    }
+}
+
+// Global css
+.btn-action {
+    background-color: $color-main;
+    color: white;
+
+    &:hover {
+        color: white;
+        opacity: 0.6;
+    }
+}
