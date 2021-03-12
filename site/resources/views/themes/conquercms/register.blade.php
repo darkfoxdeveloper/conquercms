@@ -18,8 +18,5 @@
             <h2 class="section-description">{{ __('register.subtitle') }}</h2>
         </div>
     </div>
-    @include("themes.classic.partials.register")
-    @if ($settings_controller->GetPageContent() != null)
-        {!! $settings_controller->GetPageContent()->body !!}
-    @endif
+    @include("themes.conquercms.partials.register")
 @endsection

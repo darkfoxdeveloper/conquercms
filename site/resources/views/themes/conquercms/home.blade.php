@@ -41,7 +41,4 @@
             </div>
         </div>
     </div>
-    @if ($settings_controller->GetPageContent() != null)
-        {!! $settings_controller->GetPageContent()->body !!}
-    @endif
 @endsection

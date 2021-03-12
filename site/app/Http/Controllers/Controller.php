@@ -6,6 +6,7 @@ use App\Configuration;
 use App\Link;
 use App\ConquerEntity;
 use App\ConquerUser;
+use App\User;
 use Exception;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Bus\DispatchesJobs;
@@ -95,7 +96,8 @@ class Controller extends BaseController
         $data = $request->all();
         $exist = ConquerUser::where('username', '=', $data["username"])->count() > 0;
         if(!$exist) {
-            $arr = array_merge($data, array("question" => "", "answer" => "", "mobilenumber" => "", "secretquestion" => ""));
+            //$arr = array_merge($data, array("question" => "", "answer" => "", "mobilenumber" => "", "secretquestion" => ""));
+            $arr = $data;
             $cu = ConquerUser::create($arr);
             if($cu != null) {
                 return redirect()->route('register')->with('success', __('register.register_success'));
@@ -127,25 +129,7 @@ class Controller extends BaseController
         return redirect()->route('home')->with('success', __('general.setup_success'))->with('migrate', true);
     }
 
-    public function GetSetting($key, $default_value = null) {
-        $value = $default_value;
-        if (strlen($default_value) <= 0) {
-            $value = $key;
-        }
-        $config = Configuration::where('key', '=', $key)->first();
-        if ($config) {
-            $value = $config->value;
-        }
-        return $value;
-    }
-
     public function GetFooterLinks() {
-        $links = Link::all();
-        return $links;
-    }
-
-    public function GetPageContent() {
-        $routeActionName = explode("@", Route::getCurrentRoute()->getActionName())[1];
-        return Page::where('title', '=', 'Partial'.$routeActionName)->where('status', '=', 1)->first(); // Get a partial from pages where title = Partial+ControllerActionName
+        return array();// TODO get from voyager settings
     }
 }

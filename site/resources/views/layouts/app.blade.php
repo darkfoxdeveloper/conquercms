@@ -26,17 +26,19 @@
                                             $secundary_menu_items = menu('secundary', '_json');
                                         @endphp
                                         <ul class="navbar-nav">
-                                            @foreach($secundary_menu_items as $menu_item)
-                                                @if ($menu_item->url === "#SERVER_STATUS")
-                                                    <a class="nav-link" href="#">{{ __('general.status') }} <span class="text-{{ $server_status ? "online" : "offline" }}">{{ $server_status ? __('general.online') : __('general.offline') }}</span></a>
-                                                @elseif ($menu_item->url === "#ONLINE_PLAYERS")
-                                                    <a class="nav-link" href="#">{{ __('general.online_players') }} <span class="online-players">{{ $online_players }}</span></a>
-                                                @elseif ($menu_item->url === "#ACCOUNTS")
-                                                    <a class="nav-link" href="#">{{ __('general.accounts') }} <span class="text-accounts">{{ $total_accounts }}</span></a>
-                                                @else
-                                                    <li class="nav-item"><a href="{{ $menu_item->url }}" class="nav-link">{{ $menu_item->title }}</a></li>
-                                                @endif
-                                            @endforeach
+                                            @if ($secundary_menu_items)
+                                                @foreach($secundary_menu_items as $menu_item)
+                                                    @if ($menu_item->url === "#SERVER_STATUS")
+                                                        <a class="nav-link" href="#">{{ __('general.status') }} <span class="text-{{ $server_status ? "online" : "offline" }}">{{ $server_status ? __('general.online') : __('general.offline') }}</span></a>
+                                                    @elseif ($menu_item->url === "#ONLINE_PLAYERS")
+                                                        <a class="nav-link" href="#">{{ __('general.online_players') }} <span class="online-players">{{ $online_players }}</span></a>
+                                                    @elseif ($menu_item->url === "#ACCOUNTS")
+                                                        <a class="nav-link" href="#">{{ __('general.accounts') }} <span class="text-accounts">{{ $total_accounts }}</span></a>
+                                                    @else
+                                                        <li class="nav-item"><a href="{{ $menu_item->url }}" class="nav-link">{{ $menu_item->title }}</a></li>
+                                                    @endif
+                                                @endforeach
+                                            @endif
                                             <li class="nav-item dropdown">
                                                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" title="{{ __('general.switch_lang') }}">
                                                     {{ \Illuminate\Support\Facades\App::getLocale() }}
@@ -64,6 +66,45 @@
         <div class="container py-5 py-md-6" id="content-container">
             <div class="row">
                 <div class="col-12">
+                    @if ($message = Session::get('success'))
+                        <div class="alert alert-success alert-block">
+                            <button type="button" class="close" data-dismiss="alert">×</button>
+                            <strong>{{ $message }}</strong>
+                        </div>
+                    @endif
+
+
+                    @if ($message = Session::get('error'))
+                        <div class="alert alert-danger alert-block">
+                            <button type="button" class="close" data-dismiss="alert">×</button>
+                            <strong>{{ $message }}</strong>
+                        </div>
+                    @endif
+
+
+                    @if ($message = Session::get('warning'))
+                        <div class="alert alert-warning alert-block">
+                            <button type="button" class="close" data-dismiss="alert">×</button>
+                            <strong>{{ $message }}</strong>
+                        </div>
+                    @endif
+
+
+                    @if ($message = Session::get('info'))
+                        <div class="alert alert-info alert-block">
+                            <button type="button" class="close" data-dismiss="alert">×</button>
+                            <strong>{{ $message }}</strong>
+                        </div>
+                    @endif
+
+
+                    @if ($errors->any())
+                        <div class="alert alert-danger">
+                            <button type="button" class="close" data-dismiss="alert">×</button>
+                            Please check the form below for errors
+                        </div>
+                    @endif
+
                     @yield('content')
                 </div>
             </div>
@@ -81,9 +122,7 @@
                             <div class="col-md-4">
                                 <div class="footer-title">{{ __('general.links_title') }}</div>
                                 <div class="footer-tags">
-                                    @foreach($settings_controller->getFooterLinks() as $link)
-                                        <a href="{{ $link->link }}" class="link" target="_blank">{{ $link->name }}</a>
-                                    @endforeach
+                                    <a href="https://www.darkfoxdeveloper.com" class="link" target="_blank">OpenConquer Forum</a>
                                 </div>
                             </div>
                         </div>
