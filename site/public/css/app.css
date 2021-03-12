@@ -17379,6 +17379,12 @@ readers do not read off random characters that represent icons */
   font-size: 0.93rem;
 }
 
+.card .card-img-top {
+  height: 215px;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
 footer:last-of-type {
   background-color: #325e76f2;
 }

@@ -18,7 +18,7 @@
             <h2 class="section-description">{{ __('home.subtitle') }}</h2>
         </div>
     </div>
-    <div class="row justify-content-center align-items-center">
+    <div class="row justify-content-center align-items-start">
         <div class="col-12 col-md-auto">
             <div class="card" style="width: 18rem;"><img class="card-img-top" src="https://www.mmobomb.com/file/2011/03/23931.jpg" alt="Bosses" />
                 <div class="card-body">
