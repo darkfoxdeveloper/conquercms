@@ -27,8 +27,8 @@ class Controller extends BaseController
     public function __construct()
     {
         if (!isset($_COOKIE["SetupStart"])) {
-            $path = base_path(). DIRECTORY_SEPARATOR . '.env';
-            if(file_exists($path)) {
+            $path = base_path() . DIRECTORY_SEPARATOR . '.env';
+            if (file_exists($path)) {
                 $status = false;
                 try {
                     $status = fsockopen(getenv("STATUS_HOST"), getenv("STATUS_PORT"), $errno, $errstr, 30);
@@ -41,7 +41,7 @@ class Controller extends BaseController
                 View::share('total_accounts', ConquerUser::all()->count());
                 View::share('section', strtolower($routeActionName));
             } else {
-                file_put_contents($path, file_get_contents($path.".example")); // Generate a .env
+                file_put_contents($path, file_get_contents($path . ".example")); // Generate a .env
                 setcookie("SetupStart", true, time() + 3600, "/");
                 die("<h1>All ready. Please reload the page for start setup...</h1>");
             }
@@ -54,7 +54,7 @@ class Controller extends BaseController
             return view('layouts.setup');
         }
         $routeActionName = strtolower(explode("@", Route::getCurrentRoute()->getActionName())[1]);
-        $view_to_show = 'themes.'.getenv('THEME_SELECTED').'.'.$routeActionName;
+        $view_to_show = 'themes.' . getenv('THEME_SELECTED') . '.' . $routeActionName;
         if (!view()->exists($view_to_show)) {
             return view('layouts.404');
         }
@@ -64,7 +64,17 @@ class Controller extends BaseController
     public function Register()
     {
         $routeActionName = strtolower(explode("@", Route::getCurrentRoute()->getActionName())[1]);
-        $view_to_show = 'themes.'.getenv('THEME_SELECTED').'.'.$routeActionName;
+        $view_to_show = 'themes.' . getenv('THEME_SELECTED') . '.' . $routeActionName;
+        if (!view()->exists($view_to_show)) {
+            return view('layouts.404');
+        }
+        return view($view_to_show);
+    }
+
+    public function ChangePassword()
+    {
+        $routeActionName = $this->camelToUnderscore(explode("@", Route::getCurrentRoute()->getActionName())[1]);
+        $view_to_show = 'themes.' . getenv('THEME_SELECTED') . '.' . $routeActionName;
         if (!view()->exists($view_to_show)) {
             return view('layouts.404');
         }
@@ -74,7 +84,7 @@ class Controller extends BaseController
     public function Downloads()
     {
         $routeActionName = strtolower(explode("@", Route::getCurrentRoute()->getActionName())[1]);
-        $view_to_show = 'themes.'.getenv('THEME_SELECTED').'.'.$routeActionName;
+        $view_to_show = 'themes.' . getenv('THEME_SELECTED') . '.' . $routeActionName;
         if (!view()->exists($view_to_show)) {
             return view('layouts.404');
         }
@@ -84,7 +94,7 @@ class Controller extends BaseController
     public function Shop()
     {
         $routeActionName = strtolower(explode("@", Route::getCurrentRoute()->getActionName())[1]);
-        $view_to_show = 'themes.'.getenv('THEME_SELECTED').'.'.$routeActionName;
+        $view_to_show = 'themes.' . getenv('THEME_SELECTED') . '.' . $routeActionName;
         if (!view()->exists($view_to_show)) {
             return view('layouts.404');
         }
@@ -95,17 +105,33 @@ class Controller extends BaseController
     {
         $data = $request->all();
         $exist = ConquerUser::where('username', '=', $data["username"])->count() > 0;
-        if(!$exist) {
+        if (!$exist) {
             //$arr = array_merge($data, array("question" => "", "answer" => "", "mobilenumber" => "", "secretquestion" => ""));
             $arr = $data;
             $cu = ConquerUser::create($arr);
-            if($cu != null) {
+            if ($cu != null) {
                 return redirect()->route('register')->with('success', __('register.register_success'));
             } else {
                 return redirect()->route('register')->with('danger', __('register.register_fail'));
             }
         } else {
             return redirect()->route('register')->with('warning', __('register.register_already_exists'));
+        }
+    }
+
+    public function PostChangePassword(Request $request)
+    {
+        $data = $request->all();
+        $user = ConquerUser::where('username', '=', $data["username"])->where('password', $data["password"])->where('email', $data["email"]);
+        if ($user->count() > 0) {
+            if ($data["new-password"] && strlen($data["new-password"]) >= 6) {
+                ConquerUser::where('email', $data['email'])->update(['password' => $data["new-password"]]);
+                return redirect()->route('change-password')->with('success', __('change-password.success'));
+            } else {
+                return redirect()->route('change-password')->with('success', __('change-password.invalid_new_password'))->with('data', $data);
+            }
+        } else {
+            return redirect()->route('change-password')->with('warning', __('change-password.invalid_data'))->with('data', $data);
         }
     }
 
@@ -129,7 +155,9 @@ class Controller extends BaseController
         return redirect()->route('home')->with('success', __('general.setup_success'))->with('migrate', true);
     }
 
-    public function GetFooterLinks() {
-        return array();// TODO get from voyager settings
+    public function camelToUnderscore($string, $us = "-")
+    {
+        return strtolower(preg_replace(
+            '/(?<=\d)(?=[A-Za-z])|(?<=[A-Za-z])(?=\d)|(?<=[a-z])(?=[A-Z])/', $us, $string));
     }
 }

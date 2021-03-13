@@ -13,7 +13,9 @@
 Route::get('/', 'Controller@Home')->name('home');
 Route::get('/home', 'Controller@Home');
 Route::get('/register', 'Controller@Register')->name('register');
+Route::get('/change-password', 'Controller@ChangePassword')->name('change-password');
 Route::post('/register', 'Controller@PostRegister');
+Route::post('/change-password', 'Controller@PostChangePassword');
 Route::get('/downloads', 'Controller@Downloads');
 Route::get('/shop', 'Controller@Shop');
 

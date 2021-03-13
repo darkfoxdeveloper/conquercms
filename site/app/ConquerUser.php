@@ -11,6 +11,8 @@ class ConquerUser extends \TCG\Voyager\Models\User
     protected $table = "accounts";
     protected $connection = 'conquer_mysql';
     public $timestamps = false;
+    protected $primaryKey = null;
+    public $incrementing = false;
 
     /**
      * The attributes that are mass assignable.

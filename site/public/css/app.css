@@ -17385,6 +17385,10 @@ readers do not read off random characters that represent icons */
      object-fit: cover;
 }
 
+.row-item-cards .card .card-img-top {
+  height: 270px;
+}
+
 footer:last-of-type {
   background-color: #325e76f2;
 }
@@ -17419,14 +17423,18 @@ footer:last-of-type .footer-tags a {
 }
 
 footer:last-of-type .footer-mh {
-  min-height: 330px;
+  min-height: 200px;
+  padding-top: 15px;
+  padding-bottom: 15px;
 }
 
-#footer.stikybottom {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
+@media (min-width: 992px) {
+  #footer.stikybottom {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+  }
 }
 
 .section-downloads .download-box > div {

@@ -37085,7 +37085,14 @@ $(document).ready(function () {
     if (document.getElementById("footer") != null) {
       document.getElementById("footer").classList.add('stikybottom');
     }
-  }
+  } // Online Shop, paypal actions
+
+
+  $(".btn-buy-frack").on("click", function (e) {
+    e.preventDefault();
+    $("#online-shop select[name='os0']").val("Frack Atributos Lujosos");
+    $("#online-shop").submit();
+  });
 });
 
 /***/ }),
