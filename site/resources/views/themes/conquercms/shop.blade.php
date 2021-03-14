@@ -54,14 +54,13 @@
                 $directory = "images/fracks";
                 $ext = ".jpeg";
                 $images = glob($directory . "/*" . $ext);
-                ?>
-                <?php  foreach($images as $image): ?>
+                foreach($images as $image): ?>
                 <div class="col-lg-3 mb-3">
                     <div class="card">
                         <img class="card-img-top" src="{{ $image }}" alt="Frack">
                         <div class="card-body">
                             <h5 class="card-title">Frack {{ str_replace($ext, "", basename($image))  }}</h5>
-                            <p class="card-text">{{ __('shop.item-price') }}: 20 USD</p>
+                            <p class="card-text">{{ __('shop.item-price') }}: 23 USD</p>
                         </div>
                         <ul class="list-group list-group-flush">
                             <li class="list-group-item">{{ __('shop.item-line-1') }}</li>
@@ -70,7 +69,31 @@
                         </ul>
                         <div class="card-body text-center">
                             <a href="#" class="card-link btn btn-primary w-100 btn-buy-frack"
-                               data-type="{{ str_replace($ext, "", basename($image))  }}">{{ __('shop.buy-now') }}</a>
+                               data-type="frack">{{ __('shop.buy-now') }}</a>
+                        </div>
+                    </div>
+                </div>
+                <?php endforeach; ?>
+                <?php
+                $directory = "images/cups";
+                $ext = ".jpeg";
+                $images = glob($directory . "/*" . $ext);
+                foreach($images as $image): ?>
+                <div class="col-lg-3 mb-3">
+                    <div class="card">
+                        <img class="card-img-top" src="{{ $image }}" alt="Cup">
+                        <div class="card-body">
+                            <h5 class="card-title">Cup {{ str_replace($ext, "", basename($image))  }}</h5>
+                            <p class="card-text">{{ __('shop.item-price') }}: 82 USD</p>
+                        </div>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">{{ __('shop.item-line-1') }}</li>
+                            <li class="list-group-item">{{ __('shop.item-line-2') }}</li>
+                            <li class="list-group-item">{{ __('shop.item-line-3') }}</li>
+                        </ul>
+                        <div class="card-body text-center">
+                            <a href="#" class="card-link btn btn-primary w-100 btn-buy-frack"
+                               data-type="cup">{{ __('shop.buy-now') }}</a>
                         </div>
                     </div>
                 </div>

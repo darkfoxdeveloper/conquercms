@@ -17286,8 +17286,20 @@ readers do not read off random characters that represent icons */
   font-family: "Font Awesome 5 Brands";
 }
 
+@media (min-width: 992px) {
+  #content-container {
+    min-height: calc(100vh - 60px - 200px);
+  }
+}
+
 .menu-header {
   background-color: #325e76f2;
+}
+
+@media (min-width: 992px) {
+  .menu-header {
+    height: 60px;
+  }
 }
 
 .menu-header .navbar .nav-link {
@@ -17423,17 +17435,13 @@ footer:last-of-type .footer-tags a {
 }
 
 footer:last-of-type .footer-mh {
-  min-height: 200px;
   padding-top: 15px;
   padding-bottom: 15px;
 }
 
 @media (min-width: 992px) {
-  #footer.stikybottom {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
+  footer:last-of-type .footer-mh {
+    min-height: 200px;
   }
 }
 

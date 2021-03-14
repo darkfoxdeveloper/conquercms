@@ -19,21 +19,21 @@
         </div>
     </div>
     <div class="row justify-content-center align-items-start">
-        <div class="col-12 col-md-auto">
+        <div class="col-12 col-md-auto mb-5 mb-lg-0">
             <div class="card" style="width: 18rem;"><img class="card-img-top" src="https://www.mmobomb.com/file/2011/03/23931.jpg" alt="Bosses" />
                 <div class="card-body">
                     <p class="card-text">{{ __('home.card1_title') }}</p>
                 </div>
             </div>
         </div>
-        <div class="col-12 col-md-auto">
+        <div class="col-12 col-md-auto mb-5 mb-lg-0">
             <div class="card" style="width: 18rem;"><img class="card-img-top" style="object-fit: cover; min-height: 214px;" src="https://static.immortals-co.com//uploads/1060/proarena.png" alt="Tournaments" />
                 <div class="card-body">
                     <p class="card-text">{{ __('home.card2_title') }}</p>
                 </div>
             </div>
         </div>
-        <div class="col-12 col-md-auto">
+        <div class="col-12 col-md-auto mb-5 mb-lg-0">
             <div class="card" style="width: 18rem;"><img class="card-img-top" src="https://www.mmoreviews.com/imgs/100414_co_artifact1.jpg" alt="New Items" />
                 <div class="card-body">
                     <p class="card-text">{{ __('home.card3_title') }}</p>
@@ -41,4 +41,8 @@
             </div>
         </div>
     </div>
+@endsection
+
+@section('footer')
+    @parent
 @endsection

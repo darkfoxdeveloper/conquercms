@@ -21,7 +21,7 @@
                                     <div class="collapse navbar-collapse" id="navbarCCMS">
                                         {{ menu('main', 'menu_template') }}
                                     </div>
-                                    <div class="ml-auto">
+                                    <div class="ml-lg-auto">
                                         @php
                                             $secundary_menu_items = menu('secundary', '_json');
                                         @endphp
@@ -110,6 +110,7 @@
             </div>
         </div>
 
+        @section('footer')
         <footer class="container-fluid" id="footer">
             <div class="row">
                 <div class="col-12">
@@ -124,13 +125,27 @@
                                 <div class="footer-tags">
                                     <a href="https://www.darkfoxdeveloper.com" class="link" target="_blank">OpenConquer Forum</a>
                                 </div>
+                                <div class="d-inline-block">
+                                    <!-- Begin XtremeTop100 code -->
+                                    <a href="#vote" title="Vote ShadowConquer" target="_blank" id="vote-link">
+                                        <img src="http://www.xtremeTop100.com/votenew.jpg" border="0" alt="private server"></a>
+                                    <!-- End XtremeTop100 code -->
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </footer>
+        @show
 
         <script src="{{ asset('js/app.js') }}"></script>
+        <script>
+            $("#vote-link").on("click", function(e){
+                e.preventDefault();
+                var username = prompt("Please enter your username for vote [Get 40 ShadowPoints for your vote ;)]", "");
+                window.location = "http://www.xtremetop100.com/in.php?site=1132371326&postback=" + username;
+            });
+        </script>
     </body>
 </html>

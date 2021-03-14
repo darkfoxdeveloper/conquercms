@@ -1,17 +1,15 @@
 require('./bootstrap');
 
 $(document).ready(function() {
-    var height = document.getElementById("content-container").offsetHeight;
-    if (height < screen.height) {
-        if (document.getElementById("footer") != null) {
-            document.getElementById("footer").classList.add('stikybottom');
-        }
-    }
-
     // Online Shop, paypal actions
     $(".btn-buy-frack").on("click", function(e) {
         e.preventDefault();
-        $("#online-shop select[name='os0']").val("Frack Atributos Lujosos");
+        var type = $(this).data("type");
+        if (type === "cup") {
+            $("#online-shop select[name='os0']").val("Copa ShadowCO");
+        } else if (type === "frack") {
+            $("#online-shop select[name='os0']").val("Frack Atributos Lujosos");
+        }
         $("#online-shop").submit();
     });
 });

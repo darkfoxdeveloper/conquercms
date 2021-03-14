@@ -19,7 +19,7 @@
         </div>
     </div>
     <div class="row justify-content-center">
-        <div class="col-6 download-box">
+        <div class="col-12 col-lg-6 download-box mb-5">
             <div>
                 <h3>{{ __('downloads.download_client') }}</h3>
                 <i class="fas fa-file-archive download-icon"></i>
@@ -29,7 +29,7 @@
                 </ul>
             </div>
         </div>
-        <div class="col-6 download-box">
+        <div class="col-12 col-lg-6 download-box">
             <div>
                 <h3>{{ __('downloads.download_patch') }}</h3>
                 <i class="fas fa-file-archive download-icon"></i>
