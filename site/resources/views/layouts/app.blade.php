@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     </head>
-    <body class="section-{{ $section }}">
+    <body class="section-{{ $section }}" data-current-lang="{{ App::getLocale() }}">
         @section('menu')
         <header class="container-fluid  menu-header">
             <div class="row">
@@ -49,6 +49,18 @@
                                                     @endforeach
                                                 </div>
                                             </li>
+                                            @if (isset($conquer_auth) && $conquer_auth)
+                                                <li class="nav-item dropdown">
+                                                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownUser" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" title="{{ __('general.switch_lang') }}">
+                                                        {{ $conquer_auth->Username }}
+                                                    </a>
+                                                    <div class="dropdown-menu" aria-labelledby="navbarDropdownUser">
+                                                        <a class="dropdown-item" href="{{ route('logout') }}">{{ __('general.logout') }}</a>
+                                                    </div>
+                                                </li>
+                                                @else
+                                                <li class="nav-item"><a href="{{ route('login') }}" class="nav-link">{{ __('general.login') }}</a></li>
+                                            @endif
                                         </ul>
                                     </div>
                                 </nav>

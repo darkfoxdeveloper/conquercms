@@ -11,4 +11,6 @@ return [
     'links_title' => 'LINKS',
     'switch_lang' => 'Change language',
     'setup_success' => 'All is ready. Now create the admin user for login executing this command: php artisan voyager:admin your@email.com',
+    'login' => 'Login',
+    'logout' => 'Logout',
 ];

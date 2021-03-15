@@ -2,21 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use App\Configuration;
-use App\Link;
 use App\ConquerEntity;
 use App\ConquerUser;
-use App\User;
 use Exception;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Routing\Controller as BaseController;
-use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\View;
 use Jackiedo\DotenvEditor\DotenvEditor;
-use Pvtl\VoyagerPages\Page;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 
@@ -48,8 +44,15 @@ class Controller extends BaseController
         }
     }
 
-    public function Home(Route $route)
+    public function Home()
     {
+        if (session("conquer_auth")) {
+            $cUser = ConquerUser::where('username', session("conquer_auth"))->first();
+            Auth::guard("conquer")->login($cUser);
+            View::share('conquer_auth', $cUser);
+        } else {
+            View::share('conquer_auth', false);
+        }
         if (isset($_COOKIE["SetupStart"])) {
             return view('layouts.setup');
         }
@@ -63,6 +66,13 @@ class Controller extends BaseController
 
     public function Register()
     {
+        if (session("conquer_auth")) {
+            $cUser = ConquerUser::where('username', session("conquer_auth"))->first();
+            Auth::guard("conquer")->login($cUser);
+            View::share('conquer_auth', $cUser);
+        } else {
+            View::share('conquer_auth', false);
+        }
         $routeActionName = strtolower(explode("@", Route::getCurrentRoute()->getActionName())[1]);
         $view_to_show = 'themes.' . getenv('THEME_SELECTED') . '.' . $routeActionName;
         if (!view()->exists($view_to_show)) {
@@ -73,6 +83,13 @@ class Controller extends BaseController
 
     public function ChangePassword()
     {
+        if (session("conquer_auth")) {
+            $cUser = ConquerUser::where('username', session("conquer_auth"))->first();
+            Auth::guard("conquer")->login($cUser);
+            View::share('conquer_auth', $cUser);
+        } else {
+            View::share('conquer_auth', false);
+        }
         $routeActionName = $this->camelToUnderscore(explode("@", Route::getCurrentRoute()->getActionName())[1]);
         $view_to_show = 'themes.' . getenv('THEME_SELECTED') . '.' . $routeActionName;
         if (!view()->exists($view_to_show)) {
@@ -83,6 +100,13 @@ class Controller extends BaseController
 
     public function Downloads()
     {
+        if (session("conquer_auth")) {
+            $cUser = ConquerUser::where('username', session("conquer_auth"))->first();
+            Auth::guard("conquer")->login($cUser);
+            View::share('conquer_auth', $cUser);
+        } else {
+            View::share('conquer_auth', false);
+        }
         $routeActionName = strtolower(explode("@", Route::getCurrentRoute()->getActionName())[1]);
         $view_to_show = 'themes.' . getenv('THEME_SELECTED') . '.' . $routeActionName;
         if (!view()->exists($view_to_show)) {
@@ -93,6 +117,13 @@ class Controller extends BaseController
 
     public function Shop()
     {
+        if (session("conquer_auth")) {
+            $cUser = ConquerUser::where('username', session("conquer_auth"))->first();
+            Auth::guard("conquer")->login($cUser);
+            View::share('conquer_auth', $cUser);
+        } else {
+            View::share('conquer_auth', false);
+        }
         $routeActionName = strtolower(explode("@", Route::getCurrentRoute()->getActionName())[1]);
         $view_to_show = 'themes.' . getenv('THEME_SELECTED') . '.' . $routeActionName;
         if (!view()->exists($view_to_show)) {
@@ -101,8 +132,36 @@ class Controller extends BaseController
         return view($view_to_show);
     }
 
+    public function Ranking()
+    {
+        if (session("conquer_auth")) {
+            $cUser = ConquerUser::where('username', session("conquer_auth"))->first();
+            Auth::guard("conquer")->login($cUser);
+            View::share('conquer_auth', $cUser);
+        } else {
+            View::share('conquer_auth', false);
+        }
+        $routeActionName = $this->camelToUnderscore(explode("@", Route::getCurrentRoute()->getActionName())[1]);
+        $view_to_show = 'themes.' . getenv('THEME_SELECTED') . '.' . $routeActionName;
+        if (!view()->exists($view_to_show)) {
+            return view('layouts.404');
+        }
+        $players = [];
+        foreach(ConquerEntity::orderByDesc("Level")->orderByDesc("Reborn")->limit(100)->get() as $player) {
+            array_push($players, $player);
+        }
+        return view($view_to_show)->with('ranking_players', $players);
+    }
+
     public function PostRegister(Request $request)
     {
+        if (session("conquer_auth")) {
+            $cUser = ConquerUser::where('username', session("conquer_auth"))->first();
+            Auth::guard("conquer")->login($cUser);
+            View::share('conquer_auth', $cUser);
+        } else {
+            View::share('conquer_auth', false);
+        }
         $data = $request->all();
         $exist = ConquerUser::where('username', '=', $data["username"])->count() > 0;
         if (!$exist) {
@@ -121,6 +180,13 @@ class Controller extends BaseController
 
     public function PostChangePassword(Request $request)
     {
+        if (session("conquer_auth")) {
+            $cUser = ConquerUser::where('username', session("conquer_auth"))->first();
+            Auth::guard("conquer")->login($cUser);
+            View::share('conquer_auth', $cUser);
+        } else {
+            View::share('conquer_auth', false);
+        }
         $data = $request->all();
         $user = ConquerUser::where('username', '=', $data["username"])->where('password', $data["password"])->where('email', $data["email"]);
         if ($user->count() > 0) {
@@ -137,6 +203,13 @@ class Controller extends BaseController
 
     public function PostSetup(Request $request)
     {
+        if (session("conquer_auth")) {
+            $cUser = ConquerUser::where('username', session("conquer_auth"))->first();
+            Auth::guard("conquer")->login($cUser);
+            View::share('conquer_auth', $cUser);
+        } else {
+            View::share('conquer_auth', false);
+        }
         $envEditor = new DotenvEditor(app(), config());
         $envEditor->setKeys(array(
             "CONQUER_DB_HOST" => $request->get('cqDatabaseHost'),

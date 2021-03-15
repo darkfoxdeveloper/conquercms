@@ -22,5 +22,8 @@
         "sass-loader": "^7.1.0",
         "vue-template-compiler": "^2.6.11",
         "@fortawesome/fontawesome-free": "^5.12.0"
+    },
+    "dependencies": {
+        "datatables.net-bs4": "^1.10.24"
     }
 }

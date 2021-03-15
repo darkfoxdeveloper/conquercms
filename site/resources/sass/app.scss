@@ -6,6 +6,7 @@
 
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
+@import "~datatables.net-bs4/css/dataTables.bootstrap4.min.css";
 
 // Font Awesome 5 Free
 @import '~@fortawesome/fontawesome-free/scss/fontawesome.scss';
@@ -233,4 +234,7 @@ footer:last-of-type {
         color: white;
         opacity: 0.6;
     }
+}
+.table th, .table td {
+    border-top: 1px solid $blue;
 }

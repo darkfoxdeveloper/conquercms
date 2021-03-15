@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\ConquerUser;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 
@@ -14,24 +16,35 @@ class ConquerAuthController extends Controller
         $this->middleware('guest:conquer')->except('logout');
     }
 
-    public function index()
+    public function login()
     {
-        return view('login');
+        $routeActionName = $this->camelToUnderscore(explode("@", Route::getCurrentRoute()->getActionName())[1]);
+        $view_to_show = 'themes.' . getenv('THEME_SELECTED') . '.' . $routeActionName;
+        if (!view()->exists($view_to_show)) {
+            return view('layouts.404');
+        }
+        return view($view_to_show);
+    }
+
+    public function logout()
+    {
+        session()->remove("conquer_auth");
+        return redirect()->to('home');
     }
 
     public function postLogin(Request $request)
     {
         request()->validate([
-            'name' => 'required',
+            'username' => 'required',
             'password' => 'required',
         ]);
 
-        $credentials = $request->only('username', 'password');
-        // need change current encription to md5
-        if ($this->guard()->attempt($credentials)) {
-            return redirect()->intended('dashboard');
+        $cUser = ConquerUser::where('username', $request->input('username'))->where( 'password', $request->input('password' ))->first();
+        if ($cUser) {
+            session()->put("conquer_auth", intval($cUser->Username));
+            return redirect()->to('home');
         }
-        return Redirect::to("login")->withSuccess('Oppes! You have entered invalid credentials');
+        return Redirect::to("login")->withErrors('Oppes! You have entered invalid credentials');
     }
 
     public function guard(){
