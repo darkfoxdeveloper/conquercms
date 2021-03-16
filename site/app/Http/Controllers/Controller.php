@@ -30,12 +30,12 @@ class Controller extends BaseController
                     $status = fsockopen(getenv("STATUS_HOST"), getenv("STATUS_PORT"), $errno, $errstr, 30);
                 } catch (Exception $e) {
                 }
-                $routeActionName = explode("@", Route::getCurrentRoute()->getActionName())[1];
+                $routeActionName = $this->camelToUnderscore($this->camelToUnderscore(Route::getCurrentRoute()->uri()));
                 View::share('settings_controller', $this);
                 View::share('server_status', $status);
                 View::share('online_players', ConquerEntity::where('Online', '=', '1')->count());
                 View::share('total_accounts', ConquerUser::all()->count());
-                View::share('section', strtolower($routeActionName));
+                View::share('section', $routeActionName);
             } else {
                 file_put_contents($path, file_get_contents($path . ".example")); // Generate a .env
                 setcookie("SetupStart", true, time() + 3600, "/");
@@ -44,8 +44,9 @@ class Controller extends BaseController
         }
     }
 
-    public function Home()
+    public function Action()
     {
+        $routeActionName = $this->camelToUnderscore($this->camelToUnderscore(Route::getCurrentRoute()->uri()));
         if (session("conquer_auth")) {
             $cUser = ConquerUser::where('username', session("conquer_auth"))->first();
             Auth::guard("conquer")->login($cUser);
@@ -53,78 +54,6 @@ class Controller extends BaseController
         } else {
             View::share('conquer_auth', false);
         }
-        if (isset($_COOKIE["SetupStart"])) {
-            return view('layouts.setup');
-        }
-        $routeActionName = strtolower(explode("@", Route::getCurrentRoute()->getActionName())[1]);
-        $view_to_show = 'themes.' . getenv('THEME_SELECTED') . '.' . $routeActionName;
-        if (!view()->exists($view_to_show)) {
-            return view('layouts.404');
-        }
-        return view($view_to_show);
-    }
-
-    public function Register()
-    {
-        if (session("conquer_auth")) {
-            $cUser = ConquerUser::where('username', session("conquer_auth"))->first();
-            Auth::guard("conquer")->login($cUser);
-            View::share('conquer_auth', $cUser);
-        } else {
-            View::share('conquer_auth', false);
-        }
-        $routeActionName = strtolower(explode("@", Route::getCurrentRoute()->getActionName())[1]);
-        $view_to_show = 'themes.' . getenv('THEME_SELECTED') . '.' . $routeActionName;
-        if (!view()->exists($view_to_show)) {
-            return view('layouts.404');
-        }
-        return view($view_to_show);
-    }
-
-    public function ChangePassword()
-    {
-        if (session("conquer_auth")) {
-            $cUser = ConquerUser::where('username', session("conquer_auth"))->first();
-            Auth::guard("conquer")->login($cUser);
-            View::share('conquer_auth', $cUser);
-        } else {
-            View::share('conquer_auth', false);
-        }
-        $routeActionName = $this->camelToUnderscore(explode("@", Route::getCurrentRoute()->getActionName())[1]);
-        $view_to_show = 'themes.' . getenv('THEME_SELECTED') . '.' . $routeActionName;
-        if (!view()->exists($view_to_show)) {
-            return view('layouts.404');
-        }
-        return view($view_to_show);
-    }
-
-    public function Downloads()
-    {
-        if (session("conquer_auth")) {
-            $cUser = ConquerUser::where('username', session("conquer_auth"))->first();
-            Auth::guard("conquer")->login($cUser);
-            View::share('conquer_auth', $cUser);
-        } else {
-            View::share('conquer_auth', false);
-        }
-        $routeActionName = strtolower(explode("@", Route::getCurrentRoute()->getActionName())[1]);
-        $view_to_show = 'themes.' . getenv('THEME_SELECTED') . '.' . $routeActionName;
-        if (!view()->exists($view_to_show)) {
-            return view('layouts.404');
-        }
-        return view($view_to_show);
-    }
-
-    public function Shop()
-    {
-        if (session("conquer_auth")) {
-            $cUser = ConquerUser::where('username', session("conquer_auth"))->first();
-            Auth::guard("conquer")->login($cUser);
-            View::share('conquer_auth', $cUser);
-        } else {
-            View::share('conquer_auth', false);
-        }
-        $routeActionName = strtolower(explode("@", Route::getCurrentRoute()->getActionName())[1]);
         $view_to_show = 'themes.' . getenv('THEME_SELECTED') . '.' . $routeActionName;
         if (!view()->exists($view_to_show)) {
             return view('layouts.404');
@@ -134,23 +63,11 @@ class Controller extends BaseController
 
     public function Ranking()
     {
-        if (session("conquer_auth")) {
-            $cUser = ConquerUser::where('username', session("conquer_auth"))->first();
-            Auth::guard("conquer")->login($cUser);
-            View::share('conquer_auth', $cUser);
-        } else {
-            View::share('conquer_auth', false);
-        }
-        $routeActionName = $this->camelToUnderscore(explode("@", Route::getCurrentRoute()->getActionName())[1]);
-        $view_to_show = 'themes.' . getenv('THEME_SELECTED') . '.' . $routeActionName;
-        if (!view()->exists($view_to_show)) {
-            return view('layouts.404');
-        }
         $players = [];
         foreach(ConquerEntity::orderByDesc("Level")->orderByDesc("Reborn")->limit(100)->get() as $player) {
             array_push($players, $player);
         }
-        return view($view_to_show)->with('ranking_players', $players);
+        return $this->Action()->with('ranking_players', $players);
     }
 
     public function PostRegister(Request $request)
