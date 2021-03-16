@@ -14,7 +14,7 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('/', 'Controller@Action')->name('home');
     Route::get('/home', 'Controller@Action');
     Route::get('/register', 'Controller@Action')->name('register');
-    Route::get('/change-password', 'Controller@Action')->name('change-password');
+    Route::get('/change-password', 'Controller@ChangePassword')->name('change-password');
     Route::post('/register', 'Controller@PostRegister');
     Route::post('/change-password', 'Controller@PostChangePassword');
     Route::get('/downloads', 'Controller@Action');

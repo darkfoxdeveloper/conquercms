@@ -47,6 +47,9 @@ class Controller extends BaseController
     public function Action()
     {
         $routeActionName = $this->camelToUnderscore($this->camelToUnderscore(Route::getCurrentRoute()->uri()));
+        if ($routeActionName == "/") {
+            $routeActionName = "home";
+        }
         if (session("conquer_auth")) {
             $cUser = ConquerUser::where('username', session("conquer_auth"))->first();
             Auth::guard("conquer")->login($cUser);
@@ -70,6 +73,14 @@ class Controller extends BaseController
         return $this->Action()->with('ranking_players', $players);
     }
 
+    public function ChangePassword()
+    {
+        if (session("conquer_auth")) {
+            return $this->Action();
+        }
+        return redirect()->route('home')->with('error', __('general.no_permission'));
+    }
+
     public function PostRegister(Request $request)
     {
         if (session("conquer_auth")) {
@@ -88,7 +99,7 @@ class Controller extends BaseController
             if ($cu != null) {
                 return redirect()->route('register')->with('success', __('register.register_success'));
             } else {
-                return redirect()->route('register')->with('danger', __('register.register_fail'));
+                return redirect()->route('register')->with('error', __('register.register_fail'));
             }
         } else {
             return redirect()->route('register')->with('warning', __('register.register_already_exists'));
@@ -105,7 +116,7 @@ class Controller extends BaseController
             View::share('conquer_auth', false);
         }
         $data = $request->all();
-        $user = ConquerUser::where('username', '=', $data["username"])->where('password', $data["password"])->where('email', $data["email"]);
+        $user = ConquerUser::where('username', '=', $cUser->Username)->where('password', $data["password"])->where('email', $data["email"]);
         if ($user->count() > 0) {
             if ($data["new-password"] && strlen($data["new-password"]) >= 6) {
                 ConquerUser::where('email', $data['email'])->update(['password' => $data["new-password"]]);

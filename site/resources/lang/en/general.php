@@ -13,4 +13,6 @@ return [
     'setup_success' => 'All is ready. Now create the admin user for login executing this command: php artisan voyager:admin your@email.com',
     'login' => 'Login',
     'logout' => 'Logout',
+    'no_permission' => 'You don\'t have valid permissions for acces this page.',
+    'change_password' => 'Change password',
 ];

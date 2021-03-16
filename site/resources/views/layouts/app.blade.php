@@ -55,6 +55,7 @@
                                                         {{ $conquer_auth->Username }}
                                                     </a>
                                                     <div class="dropdown-menu" aria-labelledby="navbarDropdownUser">
+                                                        <a class="dropdown-item" href="{{ route('change-password') }}">{{ __('general.change_password') }}</a>
                                                         <a class="dropdown-item" href="{{ route('logout') }}">{{ __('general.logout') }}</a>
                                                     </div>
                                                 </li>
@@ -81,7 +82,12 @@
                     @if ($message = Session::get('success'))
                         <div class="alert alert-success alert-block">
                             <button type="button" class="close" data-dismiss="alert">×</button>
-                            <strong>{{ $message }}</strong>
+                            @if ($message)
+                                <strong>{{ $message }}</strong>
+                            @endif
+                            @if (isset($success))
+                                <strong>{{ $success }}</strong>
+                            @endif
                         </div>
                     @endif
 
@@ -89,7 +95,9 @@
                     @if ($message = Session::get('error'))
                         <div class="alert alert-danger alert-block">
                             <button type="button" class="close" data-dismiss="alert">×</button>
-                            <strong>{{ $message }}</strong>
+                            @if ($message)
+                                <strong>{{ $message }}</strong>
+                            @endif
                         </div>
                     @endif
 
@@ -97,7 +105,12 @@
                     @if ($message = Session::get('warning'))
                         <div class="alert alert-warning alert-block">
                             <button type="button" class="close" data-dismiss="alert">×</button>
-                            <strong>{{ $message }}</strong>
+                            @if ($message)
+                                <strong>{{ $message }}</strong>
+                            @endif
+                            @if (isset($warning))
+                                <strong>{{ $warning }}</strong>
+                            @endif
                         </div>
                     @endif
 
@@ -105,7 +118,9 @@
                     @if ($message = Session::get('info'))
                         <div class="alert alert-info alert-block">
                             <button type="button" class="close" data-dismiss="alert">×</button>
-                            <strong>{{ $message }}</strong>
+                            @if ($message)
+                                <strong>{{ $message }}</strong>
+                            @endif
                         </div>
                     @endif
 
