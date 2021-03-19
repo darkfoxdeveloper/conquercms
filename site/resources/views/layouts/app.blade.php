@@ -1,3 +1,6 @@
+@php
+$vote_url = isset($conquer_auth) && $conquer_auth ? "http://www.xtremetop100.com/in.php?site=".getenv("XTREME_TOP_100_ID")."&postback=".$conquer_auth->Username : "http://www.xtremetop100.com/in.php?site=".getenv("XTREME_TOP_100_ID");
+@endphp
 <html>
     <head>
         <title>@yield('title') - {{ config('app.name') }}</title>
@@ -154,7 +157,7 @@
                                 </div>
                                 <div class="d-inline-block">
                                     <!-- Begin XtremeTop100 code -->
-                                    <a href="#vote" title="Vote ShadowConquer" target="_blank" id="vote-link">
+                                    <a href="{{ $vote_url }}" title="Vote ShadowConquer & Get rewards!" target="_blank" id="vote-link">
                                         <img src="http://www.xtremeTop100.com/votenew.jpg" border="0" alt="private server"></a>
                                     <!-- End XtremeTop100 code -->
                                 </div>
@@ -167,12 +170,5 @@
         @show
 
         <script src="{{ asset('js/app.js') }}"></script>
-        <script>
-            $("#vote-link").on("click", function(e){
-                e.preventDefault();
-                var username = prompt("Please enter your username for vote [Get 40 ShadowPoints for your vote ;)]", "");
-                window.location = "http://www.xtremetop100.com/in.php?site=1132371326&postback=" + username;
-            });
-        </script>
     </body>
 </html>
