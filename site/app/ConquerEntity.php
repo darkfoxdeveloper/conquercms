@@ -8,6 +8,9 @@ class ConquerEntity extends Model
 {
     protected $table = "entities";
     protected $connection = 'conquer_mysql';
+    public $timestamps = false;
+    protected $primaryKey = null;
+    public $incrementing = false;
 
     /**
      * The attributes that are mass assignable.

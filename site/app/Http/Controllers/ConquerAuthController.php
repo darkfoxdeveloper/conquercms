@@ -41,7 +41,7 @@ class ConquerAuthController extends Controller
 
         $cUser = ConquerUser::where('username', $request->input('username'))->where( 'password', $request->input('password' ))->first();
         if ($cUser) {
-            session()->put("conquer_auth", intval($cUser->Username));
+            session()->put("conquer_auth", $cUser->Username);
             return redirect()->to('home');
         }
         return Redirect::to("login")->withErrors('Oppes! You have entered invalid credentials');

@@ -27,6 +27,8 @@ Route::group(['middleware' => ['web']], function () {
     Route::post('login', 'ConquerAuthController@postLogin');
     Route::get('logout', 'ConquerAuthController@logout')->name('logout');
 
+    Route::get('/vote-reward/{username}/{ip}', 'Controller@voteReward');
+
     Route::get('/lang/{locale}', function ($locale) {
         if (in_array($locale, \Illuminate\Support\Facades\Config::get('app.locales'))) {
             session(['locale' => $locale]);

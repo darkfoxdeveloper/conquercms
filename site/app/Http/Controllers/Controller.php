@@ -156,6 +156,22 @@ class Controller extends BaseController
         return redirect()->route('home')->with('success', __('general.setup_success'))->with('migrate', true);
     }
 
+    public function VoteReward($username, $ip)
+    {
+        if (!isset($ip) || strlen($ip) <= 0):
+            return abort(401);
+        endif;
+        $cEntity = ConquerEntity::where('Owner', '=', $username)->first();
+        if ($cEntity) {
+            $content = "Voted => " . $username . "\r\n";
+            $valueToUpdate = $cEntity->ConquerPoints+=1000;
+            ConquerEntity::where('Owner', '=', $username)->update(['ConquerPoints' => $valueToUpdate]);
+        } else {
+            $content = "Cannot get the entity of the username\r\n";
+        }
+        //file_put_contents('last_vote_result.txt', $content);
+    }
+
     public function camelToUnderscore($string, $us = "-")
     {
         return strtolower(preg_replace(
