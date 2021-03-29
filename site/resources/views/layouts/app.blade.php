@@ -8,7 +8,7 @@ $vote_url = isset($conquer_auth) && $conquer_auth ? "http://www.xtremetop100.com
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     </head>
-    <body class="section-{{ $section }}" data-current-lang="{{ App::getLocale() }}">
+    <body class="section-{{ $section ?? 'unknown' }}" data-current-lang="{{ App::getLocale() }}">
         @section('menu')
         <header class="container-fluid  menu-header">
             <div class="row">

@@ -11,10 +11,13 @@ use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\View;
 use Jackiedo\DotenvEditor\DotenvEditor;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
+use function Psy\debug;
 
 class Controller extends BaseController
 {
@@ -37,11 +40,18 @@ class Controller extends BaseController
                 View::share('total_accounts', ConquerUser::all()->count());
                 View::share('section', $routeActionName);
             } else {
-                file_put_contents($path, file_get_contents($path . ".example")); // Generate a .env
-                setcookie("SetupStart", true, time() + 3600, "/");
-                die("<h1>All ready. Please reload the page for start setup...</h1>");
+                $routeActionName = $this->camelToUnderscore($this->camelToUnderscore(Route::getCurrentRoute()->uri()));
+                if ($routeActionName == "/") {
+                    die(header("Location: /setup"));
+                }
             }
         }
+    }
+
+    public function Setup()
+    {
+        $view_to_show = 'themes.' . getenv('THEME_SELECTED') . '.setup';
+        return view($view_to_show);
     }
 
     public function Action()
@@ -131,13 +141,8 @@ class Controller extends BaseController
 
     public function PostSetup(Request $request)
     {
-        if (session("conquer_auth")) {
-            $cUser = ConquerUser::where('username', session("conquer_auth"))->first();
-            Auth::guard("conquer")->login($cUser);
-            View::share('conquer_auth', $cUser);
-        } else {
-            View::share('conquer_auth', false);
-        }
+        $path = base_path() . DIRECTORY_SEPARATOR . '.env';
+        file_put_contents($path, file_get_contents($path . ".example")); // Generate a .env
         $envEditor = new DotenvEditor(app(), config());
         $envEditor->setKeys(array(
             "CONQUER_DB_HOST" => $request->get('cqDatabaseHost'),
@@ -150,9 +155,14 @@ class Controller extends BaseController
             "DB_PASSWORD" => $request->get('cqDatabasePassword')
         ));
         $envEditor->save();
-        setcookie("SetupStart", true, time() - 3600, "/");
+        $conn = mysqli_connect($request->get('cqDatabaseHost'), $request->get('cqDatabaseUsername'), $request->get('cqDatabasePassword'));
+        $charset = "utf8mb4";
+        $collation = "utf8mb4_unicode_ci";
+        $querySQL = "CREATE DATABASE IF NOT EXISTS ".$request->get('cmsDatabaseName')." CHARACTER SET $charset COLLATE $collation;";
+        mysqli_query($conn, $querySQL);
         Artisan::call('cache:clear');
         Artisan::call('migrate');
+        setcookie("SetupStart", true, time() - 3600, "/");
         return redirect()->route('home')->with('success', __('general.setup_success'))->with('migrate', true);
     }
 

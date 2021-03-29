@@ -21,6 +21,7 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('/shop', 'Controller@Action'); // Shop
     Route::get('ranking', 'Controller@ranking'); // Ranking
 
+    Route::get('/setup', 'Controller@Setup')->name('setup');
     Route::post('/setup', 'Controller@PostSetup');
 
     Route::get('login', 'ConquerAuthController@login')->name('login');
