@@ -11,13 +11,11 @@ use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\View;
 use Jackiedo\DotenvEditor\DotenvEditor;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
-use function Psy\debug;
+use TCG\Voyager\Models\Menu;
 
 class Controller extends BaseController
 {
@@ -160,8 +158,9 @@ class Controller extends BaseController
         $collation = "utf8mb4_unicode_ci";
         $querySQL = "CREATE DATABASE IF NOT EXISTS ".$request->get('cmsDatabaseName')." CHARACTER SET $charset COLLATE $collation;";
         mysqli_query($conn, $querySQL);
-        Artisan::call('cache:clear');
         Artisan::call('migrate');
+        Artisan::call('cache:clear');
+        Artisan::call('config:clear');
         setcookie("SetupStart", true, time() - 3600, "/");
         return redirect()->route('home')->with('success', __('general.setup_success'))->with('migrate', true);
     }
@@ -179,7 +178,7 @@ class Controller extends BaseController
         } else {
             $content = "Cannot get the entity of the username\r\n";
         }
-        //file_put_contents('last_vote_result.txt', $content);
+        file_put_contents('last_vote_result.txt', $content);
     }
 
     public function camelToUnderscore($string, $us = "-")
