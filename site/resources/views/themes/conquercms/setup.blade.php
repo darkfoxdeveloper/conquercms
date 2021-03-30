@@ -33,16 +33,6 @@
                         <label for="cqDatabaseUsername">Database Password</label>
                         <input type="password" class="form-control" id="cqDatabasePassword" name="cqDatabasePassword" value="{{ getenv("CONQUER_DB_PASSWORD") }}">
                     </div>
-                    <h4>User panel configuration</h4>
-                    <hr/>
-                    <div class="form-group">
-                        <label for="cmsUsername">Username</label>
-                        <input type="text" class="form-control" id="cmsUsername" name="cmsUsername">
-                    </div>
-                    <div class="form-group">
-                        <label for="cmsPassword">Password</label>
-                        <input type="password" class="form-control" id="cmsPassword" name="cmsPassword">
-                    </div>
                     <div class="text-right">
                         <button type="submit" class="btn btn-action">Configure</button>
                     </div>
