@@ -438,7 +438,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,1,'DaRkFoxDeveloper','darkfoxdeveloper@gmail.com','users/default.png',NULL,'$2y$10$RNBVVXUZw242HxODJ0loQel8Jm.5N.QiNLc3xm11sRB/0WBGzC/4e','WJXtyZMS4pLEp98Jyi3N3vAoHDtbNID7dCzoSbrpArU348fc6UXW2CEUSaE9',NULL,'2020-06-05 20:17:20','2021-03-12 08:29:24');
+INSERT INTO `users` VALUES (1,1,'DaRkFoxDeveloper','darkfoxdeveloper@gmail.com','users/default.png',NULL,'$2y$10$ECw3wW/hVRQmDUSU807TkeFWxVUM0IPTr2I34.41cyWgZia9XlNdy','WJXtyZMS4pLEp98Jyi3N3vAoHDtbNID7dCzoSbrpArU348fc6UXW2CEUSaE9','{\"locale\":\"en\"}','2020-06-05 20:17:20','2021-03-30 14:15:57');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -459,4 +459,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-03-19 14:46:02
+-- Dump completed on 2021-03-30 18:34:50
