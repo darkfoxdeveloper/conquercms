@@ -155,12 +155,14 @@ $vote_url = isset($conquer_auth) && $conquer_auth ? "http://www.xtremetop100.com
                                 <div class="footer-tags">
                                     <a href="https://www.darkfoxdeveloper.com" class="link" target="_blank">OpenConquer Forum</a>
                                 </div>
-                                <div class="d-inline-block">
-                                    <!-- Begin XtremeTop100 code -->
-                                    <a href="{{ $vote_url }}" title="Vote ShadowConquer & Get rewards!" target="_blank" id="vote-link">
-                                        <img src="http://www.xtremeTop100.com/votenew.jpg" border="0" alt="private server"></a>
-                                    <!-- End XtremeTop100 code -->
-                                </div>
+                                @if (getenv("XTREME_TOP_100_ID"))
+                                    <div class="d-inline-block">
+                                        <!-- Begin XtremeTop100 code -->
+                                        <a href="{{ $vote_url }}" title="Vote ShadowConquer & Get rewards!" target="_blank" id="vote-link">
+                                            <img src="http://www.xtremeTop100.com/votenew.jpg" border="0" alt="private server"></a>
+                                        <!-- End XtremeTop100 code -->
+                                    </div>
+                                @endif
                             </div>
                         </div>
                     </div>
