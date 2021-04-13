@@ -34,7 +34,14 @@ class Controller extends BaseController
                 $routeActionName = $this->camelToUnderscore($this->camelToUnderscore(Route::getCurrentRoute()->uri()));
                 View::share('settings_controller', $this);
                 View::share('server_status', $status);
-                View::share('online_players', ConquerEntity::where('Online', '=', '1')->count());
+                try {
+                    View::share('online_players', ConquerEntity::where('Online', '=', '1')->count());
+                } catch (Exception $exception) {
+                    // Detected error with this query, try with query for WorldConquer source
+                    try {
+                        View::share('online_players', ConquerEntity::whereColumn('last_login', '>', 'last_logout')->count());
+                    } catch (Exception $exception) {}
+                }
                 View::share('total_accounts', ConquerUser::all()->count());
                 View::share('section', $routeActionName);
             } else {
@@ -59,7 +66,7 @@ class Controller extends BaseController
             $routeActionName = "home";
         }
         if (session("conquer_auth")) {
-            $cUser = ConquerUser::where('username', session("conquer_auth"))->first();
+            $cUser = ConquerUser::where(env("CONQUER_DB_ACCOUNT_USERNAME_COL"), session("conquer_auth"))->first();
             Auth::guard("conquer")->login($cUser);
             View::share('conquer_auth', $cUser);
         } else {
@@ -75,7 +82,7 @@ class Controller extends BaseController
     public function Ranking()
     {
         $players = [];
-        foreach(ConquerEntity::orderByDesc("Level")->orderByDesc("Reborn")->limit(100)->get() as $player) {
+        foreach(ConquerEntity::orderByDesc(env("CONQUER_DB_ENTITY_LEVEL_COL"))->orderByDesc(env("CONQUER_DB_ENTITY_REBORN_COL"))->limit(100)->get() as $player) {
             array_push($players, $player);
         }
         return $this->Action()->with('ranking_players', $players);
@@ -92,14 +99,17 @@ class Controller extends BaseController
     public function PostRegister(Request $request)
     {
         if (session("conquer_auth")) {
-            $cUser = ConquerUser::where('username', session("conquer_auth"))->first();
+            $cUser = ConquerUser::where(env("CONQUER_DB_ACCOUNT_USERNAME_COL"), session("conquer_auth"))->first();
             Auth::guard("conquer")->login($cUser);
             View::share('conquer_auth', $cUser);
         } else {
             View::share('conquer_auth', false);
         }
         $data = $request->all();
-        $exist = ConquerUser::where('username', '=', $data["username"])->count() > 0;
+        if (strlen(env("CONQUER_DB_ACCOUNT_EMAIL_COL")) <= 0) {
+            unset($data["email"]);
+        }
+        $exist = ConquerUser::where(env("CONQUER_DB_ACCOUNT_USERNAME_COL"), '=', $data["username"])->count() > 0;
         if (!$exist) {
             //$arr = array_merge($data, array("question" => "", "answer" => "", "mobilenumber" => "", "secretquestion" => ""));
             $arr = $data;
@@ -117,14 +127,19 @@ class Controller extends BaseController
     public function PostChangePassword(Request $request)
     {
         if (session("conquer_auth")) {
-            $cUser = ConquerUser::where('username', session("conquer_auth"))->first();
+            $cUser = ConquerUser::where(env("CONQUER_DB_ACCOUNT_USERNAME_COL"), session("conquer_auth"))->first();
             Auth::guard("conquer")->login($cUser);
             View::share('conquer_auth', $cUser);
         } else {
             View::share('conquer_auth', false);
         }
         $data = $request->all();
-        $user = ConquerUser::where('username', '=', $cUser->Username)->where('password', $data["password"])->where('email', $data["email"]);
+        if (strlen(env("CONQUER_DB_ACCOUNT_EMAIL_COL")) <= 0) {
+            unset($data["email"]);
+            $user = ConquerUser::where(env("CONQUER_DB_ACCOUNT_USERNAME_COL"), '=', $cUser->Username)->where('password', $data["password"]);
+        } else {
+            $user = ConquerUser::where(env("CONQUER_DB_ACCOUNT_USERNAME_COL"), '=', $cUser->Username)->where('password', $data["password"])->where('email', $data["email"]);
+        }
         if ($user->count() > 0) {
             if ($data["new-password"] && strlen($data["new-password"]) >= 6) {
                 ConquerUser::where('email', $data['email'])->update(['password' => $data["new-password"]]);
@@ -146,6 +161,7 @@ class Controller extends BaseController
             "CONQUER_DB_HOST" => $request->get('cqDatabaseHost'),
             "CONQUER_DB_PORT" => $request->get('cqDatabasePort'),
             "CONQUER_DB_DATABASE" => $request->get('cqDatabaseName'),
+            "CONQUER_DB_DATABASE_GAMESERVER" => $request->get('cqDatabaseName'),
             "CONQUER_DB_USERNAME" => $request->get('cqDatabaseUsername'),
             "CONQUER_DB_PASSWORD" => $request->get('cqDatabasePassword'),
             "DB_DATABASE" => $request->get('cmsDatabaseName'),

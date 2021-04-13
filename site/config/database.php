@@ -63,12 +63,32 @@ return [
             ]) : [],
         ],
 
-        'conquer_mysql' => [
+        'conquer_mysql_accserver' => [
             'driver' => 'mysql',
             'url' => env('CONQUER_DATABASE_URL'),
             'host' => env('CONQUER_DB_HOST', '127.0.0.1'),
             'port' => env('CONQUER_DB_PORT', '3306'),
             'database' => env('CONQUER_DB_DATABASE', 'forge'),
+            'username' => env('CONQUER_DB_USERNAME', 'forge'),
+            'password' => env('CONQUER_DB_PASSWORD', ''),
+            'unix_socket' => env('CONQUER_DB_SOCKET', ''),
+            'charset' => 'utf8mb4',
+            'collation' => 'utf8mb4_unicode_ci',
+            'prefix' => env('CONQUER_DB_TABLE_PREFIX', ''),
+            'prefix_indexes' => true,
+            'strict' => true,
+            'engine' => 'InnoDB',
+            'options' => extension_loaded('pdo_mysql') ? array_filter([
+                PDO::MYSQL_ATTR_SSL_CA => env('MYSQL_ATTR_SSL_CA'),
+            ]) : [],
+        ],
+
+        'conquer_mysql_gameserver' => [
+            'driver' => 'mysql',
+            'url' => env('CONQUER_DATABASE_URL'),
+            'host' => env('CONQUER_DB_HOST', '127.0.0.1'),
+            'port' => env('CONQUER_DB_PORT', '3306'),
+            'database' => env('CONQUER_DB_DATABASE_GAMESERVER', 'forge'),
             'username' => env('CONQUER_DB_USERNAME', 'forge'),
             'password' => env('CONQUER_DB_PASSWORD', ''),
             'unix_socket' => env('CONQUER_DB_SOCKET', ''),

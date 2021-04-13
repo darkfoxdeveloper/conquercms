@@ -9,7 +9,7 @@ class ConquerUser extends \TCG\Voyager\Models\User
     use Notifiable;
 
     protected $table = "accounts";
-    protected $connection = 'conquer_mysql';
+    protected $connection = 'conquer_mysql_accserver';
     public $timestamps = false;
     protected $primaryKey = null;
     public $incrementing = false;
@@ -31,4 +31,10 @@ class ConquerUser extends \TCG\Voyager\Models\User
     protected $hidden = [
         'password',
     ];
+
+    public function __construct(array $attributes = [])
+    {
+        $this->table = env("CONQUER_DB_TABLE_ACCOUNTS", "accounts");
+        parent::__construct($attributes);
+    }
 }

@@ -39,7 +39,14 @@ class ConquerAuthController extends Controller
             'password' => 'required',
         ]);
 
-        $cUser = ConquerUser::where('username', $request->input('username'))->where( 'password', $request->input('password' ))->first();
+        $PassEncryption = env("CONQUER_DB_ACCOUNT_PASSWORD_ENCRYPTION");
+        if ($PassEncryption == "plaintext") {
+            $cUser = ConquerUser::where('Username', $request->input('username'))->where('Password', $request->input('password' ))->first();
+        } else {
+            $cUserSalt = ConquerUser::where('Username', $request->input('username'))->first()->Salt;
+            $cUserPass = hash($PassEncryption, $request->input('password').$cUserSalt);
+            $cUser = ConquerUser::where('Username', $request->input('username'))->where('Password', $cUserPass)->first();
+        }
         if ($cUser) {
             session()->put("conquer_auth", $cUser->Username);
             return redirect()->to('home');

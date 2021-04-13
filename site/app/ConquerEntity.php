@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class ConquerEntity extends Model
 {
     protected $table = "entities";
-    protected $connection = 'conquer_mysql';
+    protected $connection = 'conquer_mysql_gameserver';
     public $timestamps = false;
     protected $primaryKey = null;
     public $incrementing = false;
@@ -27,4 +27,10 @@ class ConquerEntity extends Model
      * @var array
      */
     protected $hidden = [];
+
+    public function __construct(array $attributes = [])
+    {
+        $this->table = env("CONQUER_DB_TABLE_ENTITIES", "entities");
+        parent::__construct($attributes);
+    }
 }

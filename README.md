@@ -7,6 +7,8 @@ This project use a Voyager laravel admin: https://github.com/the-control-group/v
 ## Requeriments
 Requeriments of laravel here: https://laravel.com/docs/6.x
 
+**For some servers this CMS require updates in the code or in configuration because of several changes in each source structure of the private server.**
+
 **Not compatible with PHP 7.2.4 or lower**
 
 ### Easy deploy

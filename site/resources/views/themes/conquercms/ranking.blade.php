@@ -34,13 +34,13 @@
                             {{ $i+1 }}
                         </td>
                         <td>
-                            {{ $player->Name }}
+                            {{ $player->{env("CONQUER_DB_ENTITY_NAME_COL")} }}
                         </td>
                         <td>
-                            {{ $player->Level }}
+                            {{ $player->{env("CONQUER_DB_ENTITY_REBORN_COL")} }}
                         </td>
                         <td>
-                            {{ $player->Reborn }}
+                            {{ $player->{env("CONQUER_DB_ENTITY_REBORN_COL")} }}
                         </td>
                     </tr>
                 @endforeach
