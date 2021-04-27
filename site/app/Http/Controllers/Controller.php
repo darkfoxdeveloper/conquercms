@@ -39,7 +39,7 @@ class Controller extends BaseController
                 } catch (Exception $exception) {
                     // Detected error with this query, try with query for WorldConquer source
                     try {
-                        View::share('online_players', ConquerEntity::whereColumn('last_login', '>', 'last_logout')->count());
+                        View::share('online_players', ConquerEntity::whereColumn('last_login', '=', 'last_logout')->count());
                     } catch (Exception $exception) {}
                 }
                 View::share('total_accounts', ConquerUser::all()->count());
@@ -134,15 +134,29 @@ class Controller extends BaseController
             View::share('conquer_auth', false);
         }
         $data = $request->all();
-        if (strlen(env("CONQUER_DB_ACCOUNT_EMAIL_COL")) <= 0) {
+        $use_email = getenv("CONQUER_DB_ACCOUNT_EMAIL_COL") && strlen(getenv("CONQUER_DB_ACCOUNT_EMAIL_COL")) > 0;
+        $userCol = env("CONQUER_DB_ACCOUNT_USERNAME_COL");
+        $passEncryption = env("CONQUER_DB_ACCOUNT_PASSWORD_ENCRYPTION");
+        $passwordCheck = $data["password"];
+        if ($passEncryption != "textplain") {
+            $passwordCheck = hash($passEncryption, $data["password"].$cUser->Salt);
+        }
+        if (!$use_email) {
             unset($data["email"]);
-            $user = ConquerUser::where(env("CONQUER_DB_ACCOUNT_USERNAME_COL"), '=', $cUser->Username)->where('password', $data["password"]);
+            $user = ConquerUser::where($userCol, '=', $cUser->{$userCol})->where('password', $passwordCheck);
         } else {
-            $user = ConquerUser::where(env("CONQUER_DB_ACCOUNT_USERNAME_COL"), '=', $cUser->Username)->where('password', $data["password"])->where('email', $data["email"]);
+            $user = ConquerUser::where(env("CONQUER_DB_ACCOUNT_USERNAME_COL"), '=', $cUser->{env("CONQUER_DB_ACCOUNT_USERNAME_COL")})->where('password', $passwordCheck)->where('email', $data["email"]);
         }
         if ($user->count() > 0) {
             if ($data["new-password"] && strlen($data["new-password"]) >= 6) {
-                ConquerUser::where('email', $data['email'])->update(['password' => $data["new-password"]]);
+                if (getenv("CONQUER_DB_ACCOUNT_PASSWORD_ENCRYPTION") && strlen(getenv("CONQUER_DB_ACCOUNT_PASSWORD_ENCRYPTION")) > 0) {
+                    $data["new-password"] = hash(getenv("CONQUER_DB_ACCOUNT_PASSWORD_ENCRYPTION"), $data["new-password"].$cUser->Salt);
+                }
+                if ($use_email) {
+                    ConquerUser::where('email', $data['email'])->update(['password' => $data["new-password"]]);
+                } else {
+                    ConquerUser::where($userCol, $cUser->{$userCol})->update(['password' => $data["new-password"]]);
+                }
                 return redirect()->route('change-password')->with('success', __('change-password.success'));
             } else {
                 return redirect()->route('change-password')->with('success', __('change-password.invalid_new_password'))->with('data', $data);

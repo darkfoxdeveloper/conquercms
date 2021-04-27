@@ -1,12 +1,15 @@
 @php
     $data = Session::get('data');
+    $use_email = getenv("CONQUER_DB_ACCOUNT_EMAIL_COL") && strlen(getenv("CONQUER_DB_ACCOUNT_EMAIL_COL")) > 0;
 @endphp
 <form action="/change-password" method="POST">
+    @if ($use_email)
     <div class="form-group">
         <label for="Email">{{ __('change-password.email') }}</label>
         <input type="email" class="form-control" id="Email"
                placeholder="{{ __('change-password.email_placeholder') }}" name="email" value="{{ isset($data) ? $data["email"] : "" }}">
     </div>
+    @endif
     <div class="form-group">
         <label for="Password">{{ __('change-password.password') }}</label>
         <input type="password" class="form-control" id="Password"
