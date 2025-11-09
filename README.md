@@ -30,7 +30,7 @@ The strings can be translated using the laravel system and can translate menus t
 Can contact me for report errors in **darkfoxdeveloper@gmail.com**
 
 ### Support
-Only support for people who have donated something
+Paid support, contact me in darkfoxdeveloper@gmail.com
  
 #### Demo user for predefined sql
 **Username**: darkfoxdeveloper@gmail.com
